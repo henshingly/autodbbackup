@@ -53,7 +53,7 @@ class auto_db_backup extends base
     /**
      * Constructor for cron auto_db_backup
      *
-     * @param string phpbb_root_path            $phpbb_root_path	phpBB root path
+     * @param string 				            $phpbb_root_path	phpBB root path
      * @param string                            $php_ext			phpBB file extension
      * @param string                            $phpbb_table_prefix	phpBB table prefix
      * @param config                            $config				Config object
