@@ -16,7 +16,7 @@ An extension for phpBB 3.2 that will automatically backup your database using th
 1. [Download the latest release](https://github.com/david63/autodbbackup/archive/3.2.zip) and unzip it.
 2. Unzip the downloaded release and copy it to the `ext` directory of your phpBB board.
 3. Navigate in the ACP to `Customise -> Manage extensions`.
-4. Look for `Reset registration date` under the Disabled Extensions list and click its `Enable` link.
+4. Look for `Auto database backup` under the Disabled Extensions list and click its `Enable` link.
 
 ## Usage
 1. Navigate in the ACP to `Maintenance -> Auto Database Backup -> Auto backup settings`.
