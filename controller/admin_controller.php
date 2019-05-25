@@ -37,7 +37,7 @@ class admin_controller implements admin_interface
 	/** @var \phpbb\log\log */
 	protected $log;
 
-	/** @var phpbb\language\language */
+	/** @var \phpbb\language\language */
 	protected $language;
 
 	/** @var string Custom form action */
@@ -160,7 +160,7 @@ class admin_controller implements admin_interface
 	{
 		$filetypes = array();
 
-	   if (@extension_loaded('zlib'))
+		if (@extension_loaded('zlib'))
 		{
 			$filetypes['gzip'] = $this->language->lang(['FILETYPE', 'gzip']);
 		}

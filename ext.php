@@ -14,7 +14,7 @@ use phpbb\extension\base;
 class ext extends base
 {
 	const AUTO_DB_BACKUP_VERSION = '2.1.0 RC4';
-	
+
 	/**
 	* Enable extension if phpBB version requirement is met
 	*

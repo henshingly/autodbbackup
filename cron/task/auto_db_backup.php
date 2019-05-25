@@ -50,22 +50,22 @@ class auto_db_backup extends base
 	/** @var \phpbb\db\tools\tools_interface */
 	protected $db_tools;
 
-    /**
-     * Constructor for cron auto_db_backup
-     *
-     * @param string 				            $phpbb_root_path	phpBB root path
-     * @param string                            $php_ext			phpBB file extension
-     * @param string                            $phpbb_table_prefix	phpBB table prefix
-     * @param config                            $config				Config object
-     * @param \phpbb\db\driver\driver_interface $db					Database objecy
-     * @param \phpbb\log\log                    $log    			phpBB log
-     * @param \phpbb\user                       $user   			User object
-     * @param ContainerInterface                $phpbb_container	phpBBcontainer
-     * @param dispatcher_interface              $dispatcher			phpBB dispatcher
-	 * @param tools_interface              		$db_tools			phpBB db tools
-     *
-     * @access   public
-     */
+	/**
+	* Constructor for cron auto_db_backup
+	*
+	* @param string 				            $phpbb_root_path	phpBB root path
+	* @param string                            $php_ext			phpBB file extension
+	* @param string                            $phpbb_table_prefix	phpBB table prefix
+	* @param config                            $config				Config object
+	* @param \phpbb\db\driver\driver_interface $db					Database objecy
+	* @param \phpbb\log\log                    $log    			phpBB log
+	* @param \phpbb\user                       $user   			User object
+	* @param ContainerInterface                $phpbb_container	phpBBcontainer
+	* @param dispatcher_interface              $dispatcher			phpBB dispatcher
+	* @param tools_interface              		$db_tools			phpBB db tools
+	*
+	* @access   public
+	*/
 	public function __construct($phpbb_root_path, $php_ext, $phpbb_table_prefix, config $config, driver_interface $db, log $log, user $user, ContainerInterface $phpbb_container, dispatcher_interface $dispatcher, tools_interface $db_tools)
 	{
 		$this->phpbb_root_path	= $phpbb_root_path;
@@ -211,13 +211,13 @@ class auto_db_backup extends base
 		$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_AUTO_DB_BACKUP');
 	}
 
-    /**
-     * Get the extension type.
-     *
-     * @param $file_type
-     *
-     * @return string $extension
-     */
+	/**
+	* Get the extension type.
+	*
+	* @param $file_type
+	*
+	* @return string $extension
+	*/
 	protected function get_extension($file_type)
 	{
 		switch ($file_type)
