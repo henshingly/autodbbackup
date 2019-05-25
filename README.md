@@ -23,7 +23,7 @@ An extension for phpBB 3.2 that will automatically backup your database using th
 
 ## Uninstall
 1. Navigate in the ACP to `Customise -> Manage extensions`.
-2. Click the `Disable` link for `User details`.
+2. Click the `Disable` link for `Auto database backup`.
 3. To permanently uninstall, click `Delete Data`, then delete the autodbbackup folder from `phpBB/ext/david63/`.
 
 ## License
