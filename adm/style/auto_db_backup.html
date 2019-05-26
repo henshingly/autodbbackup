@@ -1,6 +1,5 @@
-{% include 'overall_header.html' %}
-{% include '@david63_autodbbackup/head_panel.html' %}
-{% INCLUDECSS '@david63_autodbbackup/jquery-ui.css' %}
+{% INCLUDE 'overall_header.html' %}
+{% INCLUDE '@david63_autodbbackup/head_panel.html' %}
 
 <form id="acp_auto_db_backup" method="post" action="{{ U_ACTION }}">
 	<fieldset>
@@ -77,7 +76,7 @@
 				<label for="auto_db_backup_dt">{{ lang('AUTO_DB_BACKUP_TIME') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_TIME_EXPLAIN') }}</span>
 			</dt>
 			<dd>
-				<input type="text" class="textbox" name="auto_db_time" id="auto_db_time" value="{{ NEXT_BACKUP_TIME }}"/>&nbsp;&nbsp;&nbsp;{{ lang('CLICK_SELECT') }}
+				<input type="text" class="textbox" name="auto_db_time" id="auto_db_time" value="{{ NEXT_BACKUP_TIME }}"/><br />{{ lang('CLICK_SELECT') }}
 			</dd>
 
 
@@ -98,7 +97,6 @@
 <script>
 	var closeText 		= '{{ lang('CLOSE_TEXT') | escape('js') }}';
 	var currentTextDate = '{{ lang('CURRENT_TEXT_DATE') | escape('js') }}';
-	var currentTextTime = '{{ lang('CURRENT_TEXT_TIME') | escape('js') }}';
 	var dayNamesMin 	= '{{ lang('DAY_NAMES_MIN') | escape('js') }}';
 	var hourText 		= '{{ lang('HOUR_TEXT') | escape('js') }}';
 	var isRTL 			= '{{ RTL_LANGUAGE | escape('js') }}';
@@ -112,6 +110,5 @@
 
 {% INCLUDEJS '@david63_autodbbackup/jquery-ui.js' %}
 {% INCLUDEJS '@david63_autodbbackup/jquery-timepicker.js' %}
-{% INCLUDEJS '@david63_autodbbackup/config.js' %}
-{% include '@david63_autodbbackup/donate.html' %}
-{% include 'overall_footer.html' %}
+{% INCLUDE '@david63_autodbbackup/donate.html' %}
+{% INCLUDE 'overall_footer.html' %}

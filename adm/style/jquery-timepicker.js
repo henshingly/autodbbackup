@@ -1,14 +1,25 @@
 /*! jQuery Timepicker Addon - v1.6.3 - 2016-04-20
 * http://trentrichardson.com/examples/timepicker
 * Copyright (c) 2016 Trent Richardson; Licensed MIT */
+// Config
+$( function() {
+	$('#auto_db_time').datetimepicker({
+		dateFormat: 'dd-mm-yy',
+		timeFormat: 'HH:mm',
+		stepMinute: 5,
+		isRTL: isRTL
+	});
+});
+
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
 		define(['jquery', 'jquery-ui'], factory);
 	} else {
 		factory(jQuery);
 	}
-}(function ($) {
+}
 
+(function ($) {
 	/*
 	* Lets not redefine timepicker, Prevent "Uncaught RangeError: Maximum call stack size exceeded"
 	*/
@@ -35,21 +46,23 @@
 	var Timepicker = function () {
 		this.regional = []; // Available regional settings, indexed by language code
 		this.regional[''] = { // Default regional settings
-			currentText: 'Now',
-			closeText: 'Done',
+			currentText: currentTextDate,
+			closeText: closeText,
+			prevText: prevText,
+			nextText: nextText,
 			amNames: ['AM', 'A'],
 			pmNames: ['PM', 'P'],
-			timeFormat: 'HH:mm',
 			timeSuffix: '',
-			timeOnlyTitle: 'Choose Time',
-			timeText: 'Time',
-			hourText: 'Hour',
-			minuteText: 'Minute',
-			secondText: 'Second',
-			millisecText: 'Millisecond',
-			microsecText: 'Microsecond',
-			timezoneText: 'Time Zone',
-			isRTL: false
+			timeOnlyTitle: '',
+			timeText: timeText,
+			hourText: hourText,
+			minuteText: minuteText,
+			secondText: '',
+			millisecText: '',
+			microsecText: '',
+			timezoneText: timezone,
+			monthNames: JSON.parse(monthNames),
+			dayNamesMin: JSON.parse(dayNamesMin)
 		};
 		this._defaults = { // Global defaults for all the datetime picker instances
 			showButtonPanel: true,

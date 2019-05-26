@@ -43,6 +43,9 @@ class admin_controller implements admin_interface
 	/** @var string Custom form action */
 	protected $u_action;
 
+	/** @var int Backup date */
+	protected $backup_date;
+
 	/**
 	* Constructor for admin controller
 	*
@@ -76,13 +79,10 @@ class admin_controller implements admin_interface
 	{
 		// Add the language file
 		$this->language->add_lang('acp_autobackup', 'david63/autodbbackup');
-		$this->language->add_lang('date_time_picker', 'david63/autodbbackup');
 
 		// Create a form key for preventing CSRF attacks
 		$form_key = 'auto_db_backup';
 		add_form_key($form_key);
-
-		$this->get_filetypes();
 
 		// Submit
 		if ($this->request->is_set_post('submit'))
@@ -112,12 +112,6 @@ class admin_controller implements admin_interface
 			trigger_error($this->language->lang('AUTO_DB_BACKUP_SETTINGS_CHANGED') . adm_back_link($this->u_action));
 		}
 
-		date_default_timezone_set($this->user->data['user_timezone']);
-
-		$timezone 	= new \DateTimeZone($this->user->data['user_timezone']);
-		$offset   	= $timezone->getOffset(new \DateTime) / 60; // In minutes
-		$server_tz	= ini_get('date.timezone');
-
 		// Template vars for header panel
 		$this->template->assign_vars(array(
 			'HEAD_TITLE'		=> $this->language->lang('AUTO_DB_BACKUP_SETTINGS'),
@@ -127,6 +121,9 @@ class admin_controller implements admin_interface
 		));
 
 		// Output the page
+		$timezone = new \DateTimeZone($this->user->data['user_timezone']);
+		$this->get_filetypes();
+
 		$this->template->assign_vars(array(
 			'AUTO_DB_BACKUP_COPIES'			=> $this->config['auto_db_backup_copies'],
 			'AUTO_DB_BACKUP_GC'				=> $this->config['auto_db_backup_gc'],
@@ -134,7 +131,7 @@ class admin_controller implements admin_interface
 
 			'NEXT_BACKUP_TIME'				=> date('d-m-Y H:i', $this->config['auto_db_backup_next_gc']),
 
-			'TIMEZONE'						=> $offset,
+			'TIMEZONE'						=>  $timezone->getOffset(new \DateTime) / 60, // In minutes
 
 			'RTL_LANGUAGE'					=> ($this->language->lang('DIRECTION') == 'rtl') ? true : false,
 
@@ -145,6 +142,12 @@ class admin_controller implements admin_interface
 		));
 	}
 
+	/**
+	* Set the options a user can configure
+	*
+	* @return null
+	* @access protected
+	*/
 	protected function set_options()
 	{
 		$this->config->set('auto_db_backup_copies', $this->request->variable('auto_db_backup_copies', 0));
@@ -156,6 +159,12 @@ class admin_controller implements admin_interface
 		$this->config->set('auto_db_backup_optimize', $this->request->variable('auto_db_backup_optimize', 0));
 	}
 
+	/**
+	* Create the filetype array
+	*
+	* @return template variables
+	* @access protected
+	*/
 	protected function get_filetypes()
 	{
 		$filetypes = array();
