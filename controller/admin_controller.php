@@ -15,7 +15,7 @@ use phpbb\template\template;
 use phpbb\user;
 use phpbb\log\log;
 use phpbb\language\language;
-use david63\autodbbackup\ext;
+use david63\autodbbackup\core\functions;
 
 /**
 * Admin controller
@@ -40,6 +40,9 @@ class admin_controller implements admin_interface
 	/** @var \phpbb\language\language */
 	protected $language;
 
+	/** @var \david63\autodbbackup\core\functions */
+	protected $functions;
+
 	/** @var string Custom form action */
 	protected $u_action;
 
@@ -49,24 +52,26 @@ class admin_controller implements admin_interface
 	/**
 	* Constructor for admin controller
 	*
-	* @param \phpbb\config\config		$config		Config object
-	* @param \phpbb\request\request		$request	Request object
-	* @param \phpbb\template\template	$template	Template object
-	* @param \phpbb\user				$user		User object
-	* @param \phpbb\log\log				$log		Log object
-	* @param \phpbb\language\language	$language	Language object
+	* @param \phpbb\config\config					$config		Config object
+	* @param \phpbb\request\request					$request	Request object
+	* @param \phpbb\template\template				$template	Template object
+	* @param \phpbb\user							$user		User object
+	* @param \phpbb\log\log							$log		Log object
+	* @param \phpbb\language\language				$language	Language object
+	* @param \david63\autodbbackup\core\functions	functions	Functions for the extension
 	*
 	* @return \david63\autodbbackup\controller\admin_controller
 	* @access public
 	*/
-	public function __construct(config $config, request $request, template $template, user $user, log $log, language $language)
+	public function __construct(config $config, request $request, template $template, user $user, log $log, language $language, functions $functions)
 	{
-		$this->config	= $config;
-		$this->request	= $request;
-		$this->template	= $template;
-		$this->user		= $user;
-		$this->log		= $log;
-		$this->language	= $language;
+		$this->config		= $config;
+		$this->request		= $request;
+		$this->template		= $template;
+		$this->user			= $user;
+		$this->log			= $log;
+		$this->language		= $language;
+		$this->functions	= $functions;
 	}
 
 	/**
@@ -78,11 +83,13 @@ class admin_controller implements admin_interface
 	public function display_options()
 	{
 		// Add the language file
-		$this->language->add_lang('acp_autobackup', 'david63/autodbbackup');
+		$this->language->add_lang('acp_autobackup', $this->functions->get_ext_namespace());
 
 		// Create a form key for preventing CSRF attacks
 		$form_key = 'auto_db_backup';
 		add_form_key($form_key);
+
+		$back = false;
 
 		// Submit
 		if ($this->request->is_set_post('submit'))
@@ -117,7 +124,12 @@ class admin_controller implements admin_interface
 			'HEAD_TITLE'		=> $this->language->lang('AUTO_DB_BACKUP_SETTINGS'),
 			'HEAD_DESCRIPTION'	=> $this->language->lang('AUTO_DB_BACKUP_SETTINGS_EXPLAIN'),
 
-			'VERSION_NUMBER'	=> ext::AUTO_DB_BACKUP_VERSION,
+			'NAMESPACE'			=> $this->functions->get_ext_namespace('twig'),
+
+			'S_BACK'			=> $back,
+			'S_VERSION_CHECK'	=> $this->functions->version_check(),
+
+			'VERSION_NUMBER'	=> $this->functions->get_this_version(),
 		));
 
 		// Output the page

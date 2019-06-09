@@ -38,7 +38,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'AUTO_DB_BACKUP_COPIES'					=> 'Stored backups',
-	'AUTO_DB_BACKUP_COPIES_EXPLAIN'			=> 'The number of backups that will be stored on the server.<br />0 means disabled and all backups will be stored on the server.',
+	'AUTO_DB_BACKUP_COPIES_EXPLAIN'			=> 'The number of backups that will be stored on the server.<br>0 means disabled and all backups will be stored on the server.',
 	'AUTO_DB_BACKUP_ENABLE'					=> 'Enable auto database backup',
 	'AUTO_DB_BACKUP_ENABLE_EXPLAIN'			=> 'Enable or disable automatic database backups',
 	'AUTO_DB_BACKUP_FILETYPE'				=> 'File type',
@@ -46,18 +46,23 @@ $lang = array_merge($lang, array(
 	'AUTO_DB_BACKUP_FREQ'					=> 'Backup frequency',
 	'AUTO_DB_BACKUP_FREQ_EXPLAIN'			=> 'Set backup frequency in hours.',
 	'AUTO_DB_BACKUP_MAINTAIN_FREQ'			=> 'Maintain backup freqency time',
-	'AUTO_DB_BACKUP_MAINTAIN_FREQ_EXPLAIN'	=> 'Setting this to <strong>“Yes”</strong> will mean that the backup frequency time will be maintained.<br />For example - if the time is set to 23:15 and the frequency set to 24 hours then the next backup will be at 23:15 the next day. If this is set to <strong>“No”</strong> then the next backup will be 24 hours after the backup is run.',
+	'AUTO_DB_BACKUP_MAINTAIN_FREQ_EXPLAIN'	=> 'Setting this to <strong>“Yes”</strong> will mean that the backup frequency time will be maintained.<br>For example - if the time is set to 23:15 and the frequency set to 24 hours then the next backup will be at 23:15 the next day. If this is set to <strong>“No”</strong> then the next backup will be 24 hours after the backup is run.',
 	'AUTO_DB_BACKUP_OPTIMIZE'				=> 'Optimize the database before performing the backup',
 	'AUTO_DB_BACKUP_OPTIMIZE_EXPLAIN'		=> 'Optimize only unoptimized database tables before making the backup.',
 	'AUTO_DB_BACKUP_SETTINGS'				=> 'Auto database backup settings',
 	'AUTO_DB_BACKUP_SETTINGS_CHANGED'		=> 'Auto database backup settings changed.',
-	'AUTO_DB_BACKUP_SETTINGS_EXPLAIN'		=> 'Here you can set up default settings for automatic database backups. Depending on your server configuration you may be able to compress the database.<br />All backups will be stored in <samp>/store/</samp> folder. You can restore backup via the <em>Restore</em> panel.',
+	'AUTO_DB_BACKUP_SETTINGS_EXPLAIN'		=> 'Here you can set up default settings for automatic database backups. Depending on your server configuration you may be able to compress the database.<br>All backups will be stored in <samp>/store/</samp> folder. You can restore backup via the <em>Restore</em> panel.',
 	'AUTO_DB_BACKUP_TIME'					=> 'Next backup time',
 	'AUTO_DB_BACKUP_TIME_ERROR'				=> 'The <strong>next backup time</strong> is incorrect. The time has to be defined in the future.',
-	'AUTO_DB_BACKUP_TIME_EXPLAIN'			=> 'The time at which the next database backup should be made.<br /><strong>Note:</strong> The date/time specified must be in the future.',
+	'AUTO_DB_BACKUP_TIME_EXPLAIN'			=> 'The time at which the next database backup should be made.<br><strong>Note:</strong> The date/time specified must be in the future.',
 
 	'CLICK_SELECT'							=> 'Click in textbox to select date/time',
+
 	'DATE_FORMAT_ERROR'						=> 'The next backup date/time format is invalid.',
+
+	'NEW_VERSION'							=> 'New Version',
+	'NEW_VERSION_EXPLAIN'					=> 'There is a newer version of this extension available.',
+
 	'VERSION'								=> 'Version',
 
 	'FILETYPE'	=> array(

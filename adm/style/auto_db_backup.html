@@ -1,5 +1,4 @@
-{% INCLUDE 'overall_header.html' %}
-{% INCLUDE '@david63_autodbbackup/head_panel.html' %}
+{% INCLUDE '@' ~ NAMESPACE ~ '/head_panel.html' %}
 
 <form id="acp_auto_db_backup" method="post" action="{{ U_ACTION }}">
 	<fieldset>
@@ -7,7 +6,7 @@
 
 		<dl>
 			<dt>
-				<label for="auto_db_backup_enable">{{ lang('AUTO_DB_BACKUP_ENABLE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_ENABLE_EXPLAIN') }}</span>
+				<label for="auto_db_backup_enable">{{ lang('AUTO_DB_BACKUP_ENABLE') }}{{ lang('COLON') }}</label><br><span>{{ lang('AUTO_DB_BACKUP_ENABLE_EXPLAIN') }}</span>
 			</dt>
 			<dd>
 				<input type="radio" id="auto_db_backup_enable1" name="auto_db_backup_enable" value="1"{% if S_AUTO_DB_BACKUP_ENABLE %} checked="checked"{% endif %} />
@@ -19,7 +18,7 @@
 
 		<dl>
 			<dt>
-				<label for="auto_db_backup_filetype">{{ lang('AUTO_DB_BACKUP_FILETYPE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_FILETYPE_EXPLAIN') }}</span>
+				<label for="auto_db_backup_filetype">{{ lang('AUTO_DB_BACKUP_FILETYPE') }}{{ lang('COLON') }}</label><br><span>{{ lang('AUTO_DB_BACKUP_FILETYPE_EXPLAIN') }}</span>
 			</dt>
 			<dd>
 				{% for types in filetypes %}
@@ -31,7 +30,7 @@
 
 		<dl>
 			<dt>
-				<label for="auto_db_backup_gc">{{ lang('AUTO_DB_BACKUP_FREQ') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_FREQ_EXPLAIN') }}</span>
+				<label for="auto_db_backup_gc">{{ lang('AUTO_DB_BACKUP_FREQ') }}{{ lang('COLON') }}</label><br><span>{{ lang('AUTO_DB_BACKUP_FREQ_EXPLAIN') }}</span>
 			</dt>
 			<dd>
 				<input class="textbox" id="auto_db_backup_gc" type="number" maxlength="3" name="auto_db_backup_gc" value="{{ AUTO_DB_BACKUP_GC }}" min="1" max="350" /><span> {{ lang('HOURS') }}</span>
@@ -40,7 +39,7 @@
 
 		<dl>
 			<dt>
-				<label for="auto_db_backup_enable">{{ lang('AUTO_DB_BACKUP_MAINTAIN_FREQ') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_MAINTAIN_FREQ_EXPLAIN') }}</span>
+				<label for="auto_db_backup_enable">{{ lang('AUTO_DB_BACKUP_MAINTAIN_FREQ') }}{{ lang('COLON') }}</label><br><span>{{ lang('AUTO_DB_BACKUP_MAINTAIN_FREQ_EXPLAIN') }}</span>
 			</dt>
 			<dd>
 				<input type="radio" id="auto_db_backup_maintain_freq1" name="auto_db_backup_maintain_freq" value="1"{% if AUTO_DB_BACKUP_MAINTAIN_FREQ %} checked="checked"{% endif %} />
@@ -52,7 +51,7 @@
 
 		<dl>
 			<dt>
-				<label for="auto_db_backup_copies">{{ lang('AUTO_DB_BACKUP_COPIES') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_COPIES_EXPLAIN') }}</span>
+				<label for="auto_db_backup_copies">{{ lang('AUTO_DB_BACKUP_COPIES') }}{{ lang('COLON') }}</label><br><span>{{ lang('AUTO_DB_BACKUP_COPIES_EXPLAIN') }}</span>
 			</dt>
 			<dd>
 				<input class="textbox" id="auto_db_backup_copies" type="number" maxlength="2" name="auto_db_backup_copies" value="{{ AUTO_DB_BACKUP_COPIES }}" min="0" max="99" />
@@ -61,7 +60,7 @@
 
 		<dl>
 			<dt>
-				<label for="auto_db_backup_optimize">{{ lang('AUTO_DB_BACKUP_OPTIMIZE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_OPTIMIZE_EXPLAIN') }}</span>
+				<label for="auto_db_backup_optimize">{{ lang('AUTO_DB_BACKUP_OPTIMIZE') }}{{ lang('COLON') }}</label><br><span>{{ lang('AUTO_DB_BACKUP_OPTIMIZE_EXPLAIN') }}</span>
 			</dt>
 			<dd>
 				<input type="radio" id="auto_db_backup_optimize1" name="auto_db_backup_optimize" value="1"{% if S_AUTO_DB_BACKUP_OPTIMIZE %} checked="checked"{% endif %} />
@@ -73,10 +72,10 @@
 
 		<dl>
 			<dt>
-				<label for="auto_db_backup_dt">{{ lang('AUTO_DB_BACKUP_TIME') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_TIME_EXPLAIN') }}</span>
+				<label for="auto_db_backup_dt">{{ lang('AUTO_DB_BACKUP_TIME') }}{{ lang('COLON') }}</label><br><span>{{ lang('AUTO_DB_BACKUP_TIME_EXPLAIN') }}</span>
 			</dt>
 			<dd>
-				<input type="text" class="textbox" name="auto_db_time" id="auto_db_time" value="{{ NEXT_BACKUP_TIME }}"/><br />{{ lang('CLICK_SELECT') }}
+				<input type="text" class="textbox" name="auto_db_time" id="auto_db_time" value="{{ NEXT_BACKUP_TIME }}"/><br>{{ lang('CLICK_SELECT') }}
 			</dd>
 
 
@@ -108,7 +107,6 @@
 	var timezone 		= '{{ TIMEZONE | escape('js') }}';
 </script>
 
-{% INCLUDEJS '@david63_autodbbackup/jquery-ui.js' %}
-{% INCLUDEJS '@david63_autodbbackup/jquery-timepicker.js' %}
-{% INCLUDE '@david63_autodbbackup/donate.html' %}
-{% INCLUDE 'overall_footer.html' %}
+{% INCLUDEJS '@' ~ NAMESPACE ~ '/jquery-ui.js' %}
+{% INCLUDEJS '@' ~ NAMESPACE ~ '/jquery-timepicker.js' %}
+{% INCLUDE '@' ~ NAMESPACE ~ '/donate.html' %}
