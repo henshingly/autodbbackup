@@ -193,7 +193,7 @@ class auto_db_backup extends base
 			arsort($files);
 			reset($files);
 
-			if (is_array($files) > $this->config['auto_db_backup_copies'])
+			if (count($files) > $this->config['auto_db_backup_copies'])
 			{
 				$i = 0;
 				while (list($key, $val) = each($files))
