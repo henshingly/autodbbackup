@@ -6,9 +6,12 @@
 $( function() {
 	$('#auto_db_time').datetimepicker({
 		dateFormat: 'dd-mm-yy',
+		timeInput: true,
 		timeFormat: 'HH:mm',
 		stepMinute: 5,
-		isRTL: isRTL
+		isRTL: isRTL,
+		addSliderAccess: true,
+		sliderAccessArgs: { touchonly: false },
 	});
 });
 
