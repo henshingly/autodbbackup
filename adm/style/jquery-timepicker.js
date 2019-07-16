@@ -64,7 +64,7 @@ $( function() {
 			secondText: '',
 			millisecText: '',
 			microsecText: '',
-			timezoneText: timezone,
+			timezoneText: '',
 			monthNames: JSON.parse(monthNames),
 			dayNamesMin: JSON.parse(dayNamesMin)
 		};
@@ -89,7 +89,7 @@ $( function() {
 			second: 0,
 			millisec: 0,
 			microsec: 0,
-			timezone: null,
+			timezone: timezone,
 			hourMin: 0,
 			minuteMin: 0,
 			secondMin: 0,
