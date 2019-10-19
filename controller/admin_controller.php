@@ -91,6 +91,9 @@ class admin_controller implements admin_interface
 
 		$back = false;
 
+		$timezone	= new \DateTimeZone($this->user->data['user_timezone']);
+		$tz_offset	= $timezone->getOffset(new \DateTime);
+
 		// Submit
 		if ($this->request->is_set_post('submit'))
 		{
@@ -101,7 +104,7 @@ class admin_controller implements admin_interface
 			}
 
 			// Let's check that we have a valid date & time and convert it to a timestamp so that we have a common value.
-			if (($this->backup_date = strtotime($this->request->variable('auto_db_time', ''))) === false)
+			if (($this->backup_date = strtotime($this->request->variable('auto_db_time', '')) + $tz_offset) === false)
 			{
 				trigger_error($this->language->lang('DATE_FORMAT_ERROR') . adm_back_link($this->u_action), E_USER_WARNING);
 			}
@@ -133,8 +136,6 @@ class admin_controller implements admin_interface
 		));
 
 		// Output the page
-		$timezone	= new \DateTimeZone($this->user->data['user_timezone']);
-		$tz_offset	= $timezone->getOffset(new \DateTime);
 		$this->get_filetypes();
 
 		$this->template->assign_vars(array(
@@ -142,7 +143,7 @@ class admin_controller implements admin_interface
 			'AUTO_DB_BACKUP_GC'				=> $this->config['auto_db_backup_gc'],
 			'AUTO_DB_BACKUP_MAINTAIN_FREQ'	=> $this->config['auto_db_backup_maintain_freq'],
 
-			'NEXT_BACKUP_TIME'				=> date('d-m-Y H:i', $this->config['auto_db_backup_next_gc'] + $tz_offset),
+			'NEXT_BACKUP_TIME'				=> date('d-m-Y H:i', $this->config['auto_db_backup_next_gc'] - $tz_offset),
 
 			'TIMEZONE'						=> $tz_offset / 60, // In minutes
 
@@ -167,7 +168,7 @@ class admin_controller implements admin_interface
 		$this->config->set('auto_db_backup_enable', $this->request->variable('auto_db_backup_enable', 0));
 		$this->config->set('auto_db_backup_filetype', $this->request->variable('auto_db_backup_filetype', 'text'));
 		$this->config->set('auto_db_backup_gc', $this->request->variable('auto_db_backup_gc', 0));
-		$this->config->set('auto_db_backup_next_gc', $this->backup_date);
+		$this->config->set('auto_db_backup_next_gc', $this->backup_date, 0);
 		$this->config->set('auto_db_backup_maintain_freq', $this->request->variable('auto_db_backup_maintain_freq', 0));
 		$this->config->set('auto_db_backup_optimize', $this->request->variable('auto_db_backup_optimize', 0));
 	}
