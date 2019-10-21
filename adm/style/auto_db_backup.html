@@ -1,5 +1,6 @@
 {% include '@' ~ NAMESPACE ~ '/head_panel.html' %}
 {% INCLUDECSS '@' ~ NAMESPACE ~ '/jquery-ui.css' %}
+{% set DEBUG = false %}
 
 <form id="acp_auto_db_backup" method="post" action="{{ U_ACTION }}">
 	<fieldset>
@@ -78,11 +79,76 @@
 			<dd>
 				<input type="text" class="textbox" name="auto_db_time" id="auto_db_time" value="{{ NEXT_BACKUP_TIME }}"/><br>{{ lang('CLICK_SELECT') }}
 			</dd>
-
-
 		</dl>
-
 	</fieldset>
+
+	{% if DEBUG %}
+		<fieldset>
+			<legend>Debug</legend>
+				<dt>
+					<label for="server_time">Server time{{ lang('COLON') }}</label>
+				</dt>
+				<dd>
+					<input class="textbox" value="{{ SERVER_TIME }}"/>
+				</dd>
+
+				<dt>
+					<label for="board_time">Board time{{ lang('COLON') }}</label>
+				</dt>
+				<dd>
+					<input class="textbox" value="{{ BOARD_TIME }}"/>
+				</dd>
+
+				<dt>
+					<label for="user_time">User time{{ lang('COLON') }}</label>
+				</dt>
+				<dd>
+					<input class="textbox" value="{{ USER_TIME }}"/>
+				</dd>
+
+				<dt>
+					<label for="user_timezone">User timezone{{ lang('COLON') }}</label>
+				</dt>
+				<dd>
+					<input class="textbox" value="{{ MY_TIMEZONE }}"/>
+				</dd>
+
+				<dt>
+					<label for="php_timezone">Server timezone from PHP.ini{{ lang('COLON') }}</label>
+				</dt>
+				<dd>
+					<input class="textbox" value="{{ PHP_TIMEZONE }}"/>
+				</dd>
+
+				<dt>
+					<label for="timezone_offset">User timezone offset from UTC (seconds){{ lang('COLON') }}</label>
+				</dt>
+				<dd>
+			   		<input class="textbox" value="{{ UTC_TIMEZONE }}"/>
+				</dd>
+
+				<dt>
+					<label for="utc_offset">UTC timezone offset from PHP.ini (seconds){{ lang('COLON') }}</label>
+				</dt>
+				<dd>
+					<input class="textbox" value="{{ UTC_OFFSET }}"/>
+				</dd>
+
+				<dt>
+					<label for="backup_time">Db backup time (UTC){{ lang('COLON') }}</label>
+				</dt>
+				<dd>
+					<input class="textbox" value="{{ BACKUP_TIME }}"/>
+				</dd>
+
+				<dt>
+					<label for="next_backup_time">Next backup time{{ lang('COLON') }}</label>
+				</dt>
+				<dd>
+					<input class="textbox" value="{{ MY_NEXT_BACKUP_TIME }}"/>
+				</dd>
+		</fieldset>
+	{% endif %}
 
 	<fieldset>
 		<legend>{{ lang('ACP_SUBMIT_CHANGES') }}</legend>
@@ -105,7 +171,6 @@
 	var nextText 		= '{{ lang('NEXT_TEXT') | escape('js') }}';
 	var prevText 		= '{{ lang('PREV_TEXT') | escape('js') }}';
 	var timeText 		= '{{ lang('TIME_TEXT') | escape('js') }}';
-	var timezone 		= '{{ TIMEZONE | escape('js') }}';
 </script>
 
 {% INCLUDEJS '@' ~ NAMESPACE ~ '/jquery-ui.js' %}

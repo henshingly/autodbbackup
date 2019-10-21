@@ -17,6 +17,7 @@ use phpbb\log\log;
 use phpbb\user;
 use phpbb\event\dispatcher_interface;
 use phpbb\db\tools\tools_interface;
+use david63\autodbbackup\core\functions;
 
 class auto_db_backup extends base
 {
@@ -50,23 +51,27 @@ class auto_db_backup extends base
 	/** @var \phpbb\db\tools\tools_interface */
 	protected $db_tools;
 
+	/** @var \david63\autodbbackup\core\functions */
+	protected $functions;
+
 	/**
 	* Constructor for cron auto_db_backup
 	*
-	* @param string 				            $phpbb_root_path	phpBB root path
-	* @param string								$php_ext			phpBB file extension
-	* @param string								$phpbb_table_prefix	phpBB table prefix
-	* @param config								$config				Config object
-	* @param \phpbb\db\driver\driver_interface	$db					Database objecy
-	* @param \phpbb\log\log						$log    			phpBB log
-	* @param \phpbb\user						$user   			User object
-	* @param ContainerInterface					$phpbb_container	phpBBcontainer
-	* @param dispatcher_interface				$dispatcher			phpBB dispatcher
-	* @param tools_interface              		$db_tools			phpBB db tools
+	* @param string 				            	$phpbb_root_path	phpBB root path
+	* @param string									$php_ext			phpBB file extension
+	* @param string									$phpbb_table_prefix	phpBB table prefix
+	* @param config									$config				Config object
+	* @param \phpbb\db\driver\driver_interface		$db					Database object
+	* @param \phpbb\log\log							$log    			phpBB log
+	* @param \phpbb\user							$user   			User object
+	* @param ContainerInterface						$phpbb_container	phpBBcontainer
+	* @param dispatcher_interface					$dispatcher			phpBB dispatcher
+	* @param tools_interface              			$db_tools			phpBB db tools
+	* @param \david63\autodbbackup\core\functions	functions			Functions for the extension
 	*
 	* @access   public
 	*/
-	public function __construct($phpbb_root_path, $php_ext, $phpbb_table_prefix, config $config, driver_interface $db, log $log, user $user, ContainerInterface $phpbb_container, dispatcher_interface $dispatcher, tools_interface $db_tools)
+	public function __construct($phpbb_root_path, $php_ext, $phpbb_table_prefix, config $config, driver_interface $db, log $log, user $user, ContainerInterface $phpbb_container, dispatcher_interface $dispatcher, tools_interface $db_tools, functions $functions)
 	{
 		$this->phpbb_root_path	= $phpbb_root_path;
 		$this->php_ext			= $php_ext;
@@ -78,6 +83,7 @@ class auto_db_backup extends base
 		$this->container		= $phpbb_container;
 		$this->dispatcher		= $dispatcher;
 		$this->db_tools			= $db_tools;
+		$this->functions		= $functions;
 	}
 
 	/**
@@ -90,7 +96,7 @@ class auto_db_backup extends base
 		$time = time();
 
 		// Update the next backup time.
-		$next_backup = $time + ($this->config['auto_db_backup_gc'] * 3600); // Convert hours to seconds
+		$next_backup = ($time - $this->functions->get_utc_offset()) + ($this->config['auto_db_backup_gc'] * 3600); // Convert hours to seconds
 
 		// Do we want to maintain the time?
 		if ($this->config['auto_db_backup_maintain_freq'])
@@ -257,6 +263,6 @@ class auto_db_backup extends base
 	*/
 	public function should_run()
 	{
-		return $this->config['auto_db_backup_next_gc'] < time();
+		return ($this->config['auto_db_backup_next_gc'] + $this->functions->get_utc_offset()) < time();
 	}
 }

@@ -91,8 +91,10 @@ class admin_controller implements admin_interface
 
 		$back = false;
 
-		$timezone	= new \DateTimeZone($this->user->data['user_timezone']);
-		$tz_offset	= $timezone->getOffset(new \DateTime);
+		// Let's do some timezone manipulation
+		$utc_offset 	= $this->functions->get_utc_offset();
+		$user_dtz		= new \DateTimeZone($this->user->data['user_timezone']);
+		$user_offset	= $user_dtz->getOffset(new \DateTime);
 
 		// Submit
 		if ($this->request->is_set_post('submit'))
@@ -104,17 +106,18 @@ class admin_controller implements admin_interface
 			}
 
 			// Let's check that we have a valid date & time and convert it to a timestamp so that we have a common value.
-			if (($this->backup_date = strtotime($this->request->variable('auto_db_time', '')) + $tz_offset) === false)
+			if (($this->backup_date = strtotime($this->request->variable('auto_db_time', ''))) === false)
 			{
 				trigger_error($this->language->lang('DATE_FORMAT_ERROR') . adm_back_link($this->u_action), E_USER_WARNING);
 			}
 
-			if ($this->request->variable('auto_db_backup_enable', 0) && ($this->backup_date <= time()))
+			if ($this->request->variable('auto_db_backup_enable', 0) && (($this->backup_date - $user_offset) <= (time() - $utc_offset)))
 			{
 				trigger_error($this->language->lang('AUTO_DB_BACKUP_TIME_ERROR') . adm_back_link($this->u_action), E_USER_WARNING);
 			}
 
 			// Set the options the user has configured
+			$this->backup_date = ($this->backup_date - $user_offset);
 			$this->set_options();
 
 			// Add option settings change action to the admin log
@@ -143,9 +146,7 @@ class admin_controller implements admin_interface
 			'AUTO_DB_BACKUP_GC'				=> $this->config['auto_db_backup_gc'],
 			'AUTO_DB_BACKUP_MAINTAIN_FREQ'	=> $this->config['auto_db_backup_maintain_freq'],
 
-			'NEXT_BACKUP_TIME'				=> date('d-m-Y H:i', $this->config['auto_db_backup_next_gc'] - $tz_offset),
-
-			'TIMEZONE'						=> $tz_offset / 60, // In minutes
+			'NEXT_BACKUP_TIME'				=> date('d-m-Y H:i', $this->config['auto_db_backup_next_gc'] + $user_offset),
 
 			'RTL_LANGUAGE'					=> ($this->language->lang('DIRECTION') == 'rtl') ? true : false,
 
@@ -153,6 +154,17 @@ class admin_controller implements admin_interface
 			'S_AUTO_DB_BACKUP_OPTIMIZE'		=> $this->config['auto_db_backup_optimize'],
 
 			'U_ACTION'						=> $this->u_action,
+
+			// Debug stuff
+			'BACKUP_TIME'			=> date('d-m-Y H:i', $this->config['auto_db_backup_next_gc']),
+			'BOARD_TIME'			=> $this->user->format_date(time(), false, true),
+			'MY_NEXT_BACKUP_TIME'	=> date('d-m-Y H:i', $this->config['auto_db_backup_next_gc'] + $user_offset),
+			'MY_TIMEZONE'			=> $this->user->data['user_timezone'],
+			'PHP_TIMEZONE'			=> ini_get('date.timezone'),
+			'SERVER_TIME'			=> date('d-m-Y H:i', time()),
+			'UTC_OFFSET'			=> $utc_offset,
+			'USER_TIME'				=> $this->user->format_date(time(), false, true),
+			'UTC_TIMEZONE'			=> $user_offset,
 		));
 	}
 

@@ -87,4 +87,20 @@ class functions
 
 		return $meta_data;
 	}
+
+	/**
+	* Get the UTC timezone offset from server time
+	*
+	* @return utc_offset
+	* @access public
+	*/
+	public function get_utc_offset()
+	{
+		$utc_dtz	= new \DateTimeZone('UTC');
+		$php_dtz 	= new \DateTimeZone(ini_get('date.timezone'));
+		$utc_dt 	= new \DateTime('now', $utc_dtz);
+		$php_dt 	= new \DateTime('now', $php_dtz);
+
+		return ($php_dtz->getOffset($php_dt) - $utc_dtz->getOffset($utc_dt));
+	}
 }
