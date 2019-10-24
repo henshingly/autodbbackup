@@ -85,6 +85,17 @@ class admin_controller implements admin_interface
 		// Add the language file
 		$this->language->add_lang('acp_autobackup', $this->functions->get_ext_namespace());
 
+		// Does the user have a timezone set?
+		if (!$this->user->data['user_timezone'])
+		{
+			trigger_error($this->language->lang('NO_TIMEZONE_SET'), E_USER_WARNING);
+		}
+
+		if (!in_array(ini_get('date.timezone'), timezone_identifiers_list()))
+		{
+			trigger_error($this->language->lang('INVALID_TIMEZONE'), E_USER_WARNING);
+		}
+
 		// Create a form key for preventing CSRF attacks
 		$form_key = 'auto_db_backup';
 		add_form_key($form_key);

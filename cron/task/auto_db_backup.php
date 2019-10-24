@@ -263,6 +263,13 @@ class auto_db_backup extends base
 	*/
 	public function should_run()
 	{
-		return ($this->config['auto_db_backup_next_gc'] + $this->functions->get_utc_offset()) < time();
+		if (!in_array(ini_get('date.timezone'), timezone_identifiers_list()))
+		{
+			return false;
+		}
+		else
+		{
+			return ($this->config['auto_db_backup_next_gc'] + $this->functions->get_utc_offset()) < time();
+		}
 	}
 }
