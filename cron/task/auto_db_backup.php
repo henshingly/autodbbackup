@@ -265,6 +265,8 @@ class auto_db_backup extends base
 	{
 		if (!in_array(ini_get('date.timezone'), timezone_identifiers_list()))
 		{
+			// Report this in the log
+			$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_AUTO_DB_BACKUP_TIMEZONE');
 			return false;
 		}
 		else

@@ -85,15 +85,24 @@ class admin_controller implements admin_interface
 		// Add the language file
 		$this->language->add_lang('acp_autobackup', $this->functions->get_ext_namespace());
 
+		// Need to do some timezone checking before we go any further
 		// Does the user have a timezone set?
 		if (!$this->user->data['user_timezone'])
 		{
 			trigger_error($this->language->lang('NO_TIMEZONE_SET'), E_USER_WARNING);
 		}
 
+		// Is the user's timezone valid?
+		// This should never happen!
+		if (!in_array($this->user->data['user_timezone'], timezone_identifiers_list()))
+		{
+			trigger_error($this->language->lang('INVALID_USER_TIMEZONE'), E_USER_WARNING);
+		}
+
+		// Is there a valid timezone in php.ini?
 		if (!in_array(ini_get('date.timezone'), timezone_identifiers_list()))
 		{
-			trigger_error($this->language->lang('INVALID_TIMEZONE'), E_USER_WARNING);
+			trigger_error($this->language->lang('INVALID_PHP_TIMEZONE'), E_USER_WARNING);
 		}
 
 		// Create a form key for preventing CSRF attacks

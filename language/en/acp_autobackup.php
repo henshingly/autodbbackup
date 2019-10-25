@@ -60,7 +60,8 @@ $lang = array_merge($lang, array(
 
 	'DATE_FORMAT_ERROR'						=> 'The next backup date/time format is invalid.',
 
-	'INVALID_TIMEZONE'						=> 'The default timzone in your php.ini file is invalid.',
+	'INVALID_PHP_TIMEZONE'					=> 'The default timzone in your php.ini file is invalid.',
+	'INVALID_USER_TIMEZONE'					=> 'There is a problem with your timezone setting.',
 
 	'NEW_VERSION'							=> 'New Version',
 	'NEW_VERSION_EXPLAIN'					=> 'There is a newer version of this extension available.',

@@ -42,4 +42,5 @@ $lang = array_merge($lang, array(
 
 	'LOG_AUTO_DB_BACKUP'			=> '<strong>Auto database backup complete</strong>',
 	'LOG_AUTO_DB_BACKUP_SETTINGS'	=> '<strong>Altered Auto Database Backup settings</strong>',
+	'LOG_AUTO_DB_BACKUP_TIMEZONE'	=> 'The Auto Database Backup failed due to invalid timezone setting',
 ));
