@@ -174,17 +174,6 @@ class admin_controller implements admin_interface
 			'S_AUTO_DB_BACKUP_OPTIMIZE'		=> $this->config['auto_db_backup_optimize'],
 
 			'U_ACTION'						=> $this->u_action,
-
-			// Debug stuff
-			'BACKUP_TIME'			=> date('d-m-Y H:i', $this->config['auto_db_backup_next_gc']),
-			'BOARD_TIME'			=> $this->user->format_date(time(), false, true),
-			'MY_NEXT_BACKUP_TIME'	=> date('d-m-Y H:i', $this->config['auto_db_backup_next_gc'] + $user_offset),
-			'MY_TIMEZONE'			=> $this->user->data['user_timezone'],
-			'PHP_TIMEZONE'			=> ini_get('date.timezone'),
-			'SERVER_TIME'			=> date('d-m-Y H:i', time()),
-			'UTC_OFFSET'			=> $utc_offset,
-			'USER_TIME'				=> $this->user->format_date(time(), false, true),
-			'UTC_TIMEZONE'			=> $user_offset,
 		));
 	}
 

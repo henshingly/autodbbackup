@@ -78,8 +78,6 @@ $lang = array_merge($lang, array(
 
 // Date/time picker
 $lang = array_merge($lang, array(
-	'CLOSE_TEXT'			=> 'Done',
-	'CURRENT_TEXT_DATE'		=> 'Now',
 	'HOUR_TEXT'				=> 'Hour',
 	'MINUTE_TEXT'			=> 'Minute',
 	'NEXT_TEXT'				=> 'Next »',

@@ -51,9 +51,9 @@ $( function() {
 		this.regional = []; // Available regional settings, indexed by language code
 		this.regional[''] = { // Default regional settings
 			currentText: currentTextDate,
-			closeText: closeText,
+			closeText: '',
 			prevText: prevText,
-			nextText: nextText,
+			nextText: nextTxt,
 			amNames: ['AM', 'A'],
 			pmNames: ['PM', 'P'],
 			timeSuffix: '',
@@ -69,7 +69,7 @@ $( function() {
 			dayNamesMin: JSON.parse(dayNamesMin)
 		};
 		this._defaults = { // Global defaults for all the datetime picker instances
-			showButtonPanel: true,
+			showButtonPanel: false,
 			timeOnly: false,
 			timeOnlyShowDate: false,
 			showHour: null,
