@@ -18,6 +18,7 @@ use phpbb\user;
 use phpbb\event\dispatcher_interface;
 use phpbb\db\tools\tools_interface;
 use david63\autodbbackup\core\functions;
+use phpbb\filesystem\filesystem;
 
 class auto_db_backup extends base
 {
@@ -54,24 +55,28 @@ class auto_db_backup extends base
 	/** @var \david63\autodbbackup\core\functions */
 	protected $functions;
 
+	/** @var \phpbb\filesystem\filesystem */
+	protected $filesystem;
+
 	/**
 	* Constructor for cron auto_db_backup
 	*
-	* @param string 				            	$phpbb_root_path	phpBB root path
-	* @param string									$php_ext			phpBB file extension
-	* @param string									$phpbb_table_prefix	phpBB table prefix
-	* @param config									$config				Config object
-	* @param \phpbb\db\driver\driver_interface		$db					Database object
-	* @param \phpbb\log\log							$log    			phpBB log
-	* @param \phpbb\user							$user   			User object
-	* @param ContainerInterface						$phpbb_container	phpBBcontainer
-	* @param dispatcher_interface					$dispatcher			phpBB dispatcher
-	* @param tools_interface              			$db_tools			phpBB db tools
-	* @param \david63\autodbbackup\core\functions	functions			Functions for the extension
+	* @param string 				            	$phpbb_root_path		phpBB root path
+	* @param string									$php_ext				phpBB file extension
+	* @param string									$phpbb_table_prefix		phpBB table prefix
+	* @param config									$config					Config object
+	* @param \phpbb\db\driver\driver_interface		$db						Database object
+	* @param \phpbb\log\log							$log    				phpBB log
+	* @param \phpbb\user							$user   				User object
+	* @param ContainerInterface						$phpbb_container		phpBBcontainer
+	* @param dispatcher_interface					$dispatcher				phpBB dispatcher
+	* @param tools_interface              			$db_tools				phpBB db tools
+	* @param \david63\autodbbackup\core\functions	functions				Functions for the extension
+	* @param \phpbb\filesystem\filesystem			$filesystem    			phpBB filesystem
 	*
 	* @access   public
 	*/
-	public function __construct($phpbb_root_path, $php_ext, $phpbb_table_prefix, config $config, driver_interface $db, log $log, user $user, ContainerInterface $phpbb_container, dispatcher_interface $dispatcher, tools_interface $db_tools, functions $functions)
+	public function __construct($phpbb_root_path, $php_ext, $phpbb_table_prefix, config $config, driver_interface $db, log $log, user $user, ContainerInterface $phpbb_container, dispatcher_interface $dispatcher, tools_interface $db_tools, functions $functions, filesystem $filesystem)
 	{
 		$this->phpbb_root_path	= $phpbb_root_path;
 		$this->php_ext			= $php_ext;
@@ -84,6 +89,7 @@ class auto_db_backup extends base
 		$this->dispatcher		= $dispatcher;
 		$this->db_tools			= $db_tools;
 		$this->functions		= $functions;
+		$this->filesystem 		= $filesystem;
 	}
 
 	/**
@@ -115,18 +121,20 @@ class auto_db_backup extends base
 		// Need to include this file for the get_usable_memory() function
 		if (!function_exists('get_usable_memory'))
 		{
-			include_once($this->phpbb_root_path . 'includes/acp/acp_database.' . $this->php_ext);
+			// Need to use "real path" as using dot in path could fail
+			$full_root_path = $this->filesystem->realpath($this->phpbb_root_path);
+			include_once($full_root_path . '\includes\acp\acp_database.' . $this->php_ext);
 		}
 
 		@set_time_limit(1200);
 		@set_time_limit(0);
 
-		$tables			= $this->db_tools->sql_list_tables();
-		$filename		= 'backup_' . $time . '_' . unique_id();
-		$file_type		= $this->config['auto_db_backup_filetype'];
-		$location		= $this->phpbb_root_path . '/store/';
-		$extractor		= $this->container->get('dbal.extractor');
-		$extension 		= $this->get_extension($file_type);
+		$tables		= $this->db_tools->sql_list_tables();
+		$filename	= 'backup_' . $time . '_' . unique_id();
+		$file_type	= $this->config['auto_db_backup_filetype'];
+		$location	= $this->phpbb_root_path . '/store/';
+		$extractor	= $this->container->get('dbal.extractor');
+		$extension 	= $this->get_extension($file_type);
 
 		$extractor->init_extractor($file_type, $filename, $time, false, true);
 		$extractor->write_start($this->table_prefix);
