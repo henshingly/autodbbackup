@@ -29,7 +29,7 @@ services:
             - '@dispatcher'
             - '@dbal.tools'
             - '@david63.autodbbackup.core.functions'
-            - '@filesystem'								
+            - '@filesystem'
         calls:
             - [set_name, [cron.task.auto_db_backup]]
         tags:

@@ -3,7 +3,7 @@
 	"type": "phpbb-extension",
 	"description": "An extension for phpBB 3.2 that will automatically backup your database using the phpBB 3.2 Cron.",
 	"version": "2.1.0-RC9",
-	"time": "2019-05-26",
+	"time": "2019-12-07",
 	"keywords": [
 		"phpbb",
 		"extension",
