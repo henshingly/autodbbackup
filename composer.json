@@ -2,7 +2,7 @@
 	"name": "david63/autodbbackup",
 	"type": "phpbb-extension",
 	"description": "An extension for phpBB that will automatically backup your database using the phpBB Cron.",
-	"version": "2.1.0-RC9",
+	"version": "2.1.0-RC10",
 	"time": "2020-01-09",
 	"keywords": [
 		"phpbb",
@@ -32,7 +32,8 @@
 		"version-check": {
         	"host": "version.phpbbdev.space",
         	"directory": "/3.2",
-        	"filename": "/auto_db_backup_version_file.json"
+        	"filename": "/auto_db_backup_version_file.json",
+			"ssl": false
     	}
 	}
 }

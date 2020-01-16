@@ -63,9 +63,11 @@ $lang = array_merge($lang, array(
 	'INVALID_PHP_TIMEZONE'					=> 'The default timzone in your php.ini file is invalid.',
 	'INVALID_USER_TIMEZONE'					=> 'There is a problem with your timezone setting in the UCP.',
 
-	'NEW_VERSION'							=> 'New Version',
-	'NEW_VERSION_EXPLAIN'					=> 'There is a newer version of this extension available.',
+	'NEW_VERSION'							=> 'New Version - %s',
+	'NEW_VERSION_EXPLAIN'					=> 'Version %1$s of this extension is now available for download.<br>%2$s',
+	'NEW_VERSION_LINK'						=> 'Download here',
 	'NO_TIMEZONE_SET'						=> 'You do not have a timezone set in your UCP - please set this before you can continue.',
+	'NO_VERSION_EXPLAIN'					=> 'Version update information is not available.',
 
 	'VERSION'								=> 'Version',
 
