@@ -82,8 +82,9 @@ class admin_controller implements admin_interface
 	*/
 	public function display_options()
 	{
-		// Add the language file
+		// Add the language files
 		$this->language->add_lang('acp_autobackup', $this->functions->get_ext_namespace());
+		$this->language->add_lang('acp_common', $this->functions->get_ext_namespace());
 
 		// Need to do some timezone checking before we go any further
 		// Does the user have a timezone set?
