@@ -71,7 +71,7 @@ class functions
 		if ($this->get_meta('host') == 'www.phpbb.com')
 		{
 			$port 	= 'https://';
-			$stable	= NULL;
+			$stable	= null;
 		}
 		else
 		{
