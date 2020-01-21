@@ -122,8 +122,9 @@ class auto_db_backup extends base
 		if (!function_exists('get_usable_memory'))
 		{
 			// Need to use "real path" as using dots in the path could fail
-			$full_root_path = $this->filesystem->realpath($this->phpbb_root_path);
-			include_once($full_root_path . '\includes\acp\acp_database.' . $this->php_ext);
+			$file_name = $this->filesystem->realpath($this->phpbb_root_path) . '\includes\acp\acp_database.' . $this->php_ext;
+			$file_name = str_replace('\\', '/', $file_name);
+			include_once($file_name);
 		}
 
 		@set_time_limit(1200);
