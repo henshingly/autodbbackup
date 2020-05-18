@@ -17,7 +17,7 @@ if (!defined('IN_PHPBB'))
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+	$lang = [];
 }
 
 // DEVELOPERS PLEASE NOTE
@@ -69,6 +69,14 @@ $lang = array_merge($lang, array(
 		'gzip'	=> 'gzip',
 		'bzip2'	=> 'bzip2',
 		'text'	=> 'text',
+	),
+
+	'FILE_SIZE'	=> array(
+		1 => 'bytes',
+		2 => 'KB',
+		3 => 'MB',
+		4 => 'GB',
+		5 => 'TB',
 	),
 ));
 

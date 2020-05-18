@@ -15,7 +15,7 @@ class version_2_1_0 extends migration
 {
 	public function update_data()
 	{
-		$update_data = array();
+		$update_data = [];
 
 		$update_data[] = array('config.add', array('auto_db_backup_copies', 5));
 		$update_data[] = array('config.add', array('auto_db_backup_enable', 0));

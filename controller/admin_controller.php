@@ -83,8 +83,7 @@ class admin_controller implements admin_interface
 	public function display_options()
 	{
 		// Add the language files
-		$this->language->add_lang('acp_autobackup', $this->functions->get_ext_namespace());
-		$this->language->add_lang('acp_common', $this->functions->get_ext_namespace());
+		$this->language->add_lang(array('acp_autobackup', 'acp_common'), $this->functions->get_ext_namespace());
 
 		// Need to do some timezone checking before we go any further
 		// Does the user have a timezone set?
@@ -139,7 +138,7 @@ class admin_controller implements admin_interface
 			}
 
 			// Set the options the user has configured
-			$this->backup_date = ($this->backup_date - $user_offset);
+			$this->backup_date = ($this->backup_date - $user_offset + $utc_offset);
 			$this->set_options();
 
 			// Add option settings change action to the admin log
@@ -172,7 +171,7 @@ class admin_controller implements admin_interface
 			'AUTO_DB_BACKUP_GC'				=> $this->config['auto_db_backup_gc'],
 			'AUTO_DB_BACKUP_MAINTAIN_FREQ'	=> $this->config['auto_db_backup_maintain_freq'],
 
-			'NEXT_BACKUP_TIME'				=> date('d-m-Y H:i', $this->config['auto_db_backup_next_gc'] + $user_offset),
+			'NEXT_BACKUP_TIME'				=> date('d-m-Y H:i', $this->config['auto_db_backup_next_gc'] + $user_offset - $utc_offset),
 
 			'RTL_LANGUAGE'					=> ($this->language->lang('DIRECTION') == 'rtl') ? true : false,
 
@@ -208,7 +207,7 @@ class admin_controller implements admin_interface
 	*/
 	protected function get_filetypes()
 	{
-		$filetypes = array();
+		$filetypes = [];
 
 		if (@extension_loaded('zlib'))
 		{

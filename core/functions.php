@@ -133,8 +133,7 @@ class functions
 		$utc_dtz	= new \DateTimeZone('UTC');
 		$php_dtz 	= new \DateTimeZone(ini_get('date.timezone'));
 		$utc_dt 	= new \DateTime('now', $utc_dtz);
-		$php_dt 	= new \DateTime('now', $php_dtz);
 
-		return ($php_dtz->getOffset($php_dt) - $utc_dtz->getOffset($utc_dt));
+		return $php_dtz->getOffset($utc_dt);
 	}
 }
