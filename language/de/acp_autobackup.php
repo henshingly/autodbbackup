@@ -51,7 +51,7 @@ $lang = array_merge($lang, array(
 	'AUTO_DB_BACKUP_OPTIMIZE_EXPLAIN'		=> 'Optimieren Sie nur nicht optimierte Datenbanktabellen, bevor Sie die Sicherung durchführen.',
 	'AUTO_DB_BACKUP_SETTINGS'				=> 'Einstellungen für die automatische Datenbanksicherung',
 	'AUTO_DB_BACKUP_SETTINGS_CHANGED'		=> 'Einstellungen für die automatische Datenbanksicherung geändert.',
-	'AUTO_DB_BACKUP_SETTINGS_EXPLAIN'		=> 'Hier können Sie Standardeinstellungen für automatische Datenbanksicherungen vornehmen. Abhängig von Ihrer Serverkonfiguration können Sie möglicherweise die Datenbank komprimieren.<br>Alle Backups werden im Ordner <samp>/store/</samp> gespeichert. Sie können über den Bereich <em><strong>Datenbank</strong> -> Wiederherstellen</em> eine Wiederherstellung starten.',
+	'AUTO_DB_BACKUP_SETTINGS_EXPLAIN'		=> 'Hier können Sie Standardeinstellungen für automatische Datenbanksicherungen vornehmen. Abhängig von Ihrer Serverkonfiguration können Sie möglicherweise die Datenbank komprimieren.<br>Alle Backups werden im Ordner <samp>/store/</samp> gespeichert. Sie können über den Bereich <em><strong>Datenbank</strong> -> <strong>Wiederherstellen</strong></em> eine Wiederherstellung starten.',
 	'AUTO_DB_BACKUP_TIME'					=> 'Nächste Sicherungszeit',
 	'AUTO_DB_BACKUP_TIME_ERROR'				=> 'Der <strong>nächste Sicherungszeitpunkt</strong> ist falsch. Der Zeitpunkt muss in der Zukunft liegen.',
 	'AUTO_DB_BACKUP_TIME_EXPLAIN'			=> 'Der Zeitpunkt, zu dem die nächste Datenbanksicherung durchgeführt werden soll.<br><strong>Hinweis:</strong> Das angegebene Datum und die angegebene Uhrzeit müssen in der Zukunft liegen.',
@@ -92,3 +92,4 @@ $lang = array_merge($lang, array(
 	'DAY_NAMES_MIN'			=> '["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"]',
 	'MONTH_NAMES' 			=> '["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]',
 ));
+
