@@ -126,5 +126,5 @@
 	<target name="gulp-task" depends="npm-install">
 		<exec command="gulp build" dir="${package-directory}" passthru="true" checkreturn="true" />
 	</target>
-	
+
 </project>
