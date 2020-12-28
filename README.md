@@ -2,11 +2,12 @@
 
 An extension for phpBB that will automatically backup your database using the phpBB Cron.
 
-[![Build Status](https://travis-ci.com/david63/autodbbackup.svg?branch=master)](https://travis-ci.com/david63/autodbbackup)
+[![Build Status](https://github.com/david63/autodbbackup/workflows/Tests/badge.svg)](https://github.com/phpbb-extensions/david63/autodbbackup)
 [![License](https://poser.pugx.org/david63/autodbbackup/license)](https://packagist.org/packages/david63/autodbbackup)
 [![Latest Stable Version](https://poser.pugx.org/david63/autodbbackup/v/stable)](https://packagist.org/packages/david63/autodbbackup)
 [![Latest Unstable Version](https://poser.pugx.org/david63/autodbbackup/v/unstable)](https://packagist.org/packages/david63/autodbbackup)
 [![Total Downloads](https://poser.pugx.org/david63/autodbbackup/downloads)](https://packagist.org/packages/david63/autodbbackup)
+[![codecov](https://codecov.io/gh/david63/autodbbackup/branch/master/graph/badge.svg?token=D2500PgRex)](https://codecov.io/gh/david63/autodbbackup)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ca60af3fa41346e4bfa0cea42a016254)](https://www.codacy.com/manual/david63/autodbbackup?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=david63/autodbbackup&amp;utm_campaign=Badge_Grade)
 
  [![Compatible](https://img.shields.io/badge/compatible-phpBB:3.2.x-blue.svg)](https://shields.io/)
