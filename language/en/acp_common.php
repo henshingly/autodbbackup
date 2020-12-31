@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * @package Move Disapproved Posts
+ * @package Auto db Backup
  * @copyright (c) 2020 david63
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
