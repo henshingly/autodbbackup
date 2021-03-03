@@ -1,15 +1,15 @@
 <?php
 /**
-*
-* @package Auto db Backup
-* @copyright (c) 2015 david63
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * @package Auto db Backup
+ * @copyright (c) 2020 david63
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 /**
-* DO NOT CHANGE
-*/
+ * DO NOT CHANGE
+ */
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -36,19 +36,26 @@ if (empty($lang) || !is_array($lang))
 // ’ » “ ” …
 //
 
+$lang = array_merge($lang, [
+	'CLICK_DONATE' 				=> 'Du möchtest etwas spenden? Dann klicke hier',
 
-$lang = array_merge($lang, array(
 	'DONATE'					=> 'Spenden',
 	'DONATE_EXTENSIONS'			=> 'Spende an meine Erweiterungen',
-	'DONATE_EXTENSIONS_EXPLAIN'	=> 'Diese Erweiterung ist wie alle meine Erweiterungen völlig kostenlos. Wenn Sie davon profitiert haben, können Sie eine Spende tätigen, indem Sie auf die gegenüberliegende PayPal-Spendenschaltfläche klicken. Ich würde mich freuen. Ich verspreche, dass es weder Spam noch Anfragen für weitere Spenden geben wird, obwohl diese immer willkommen wären.',
+	'DONATE_EXTENSIONS_EXPLAIN'	=> 'Diese Erweiterung ist, wie alle meine Erweiterungen, völlig kostenlos. Wenn Sie von dieser profitiert haben, können Sie eine Spende tätigen, indem Sie auf die PayPal-Spendenschaltfläche klicken, oder das nebenstehende QR-Bild “Scan, Pay, Go” verwenden. - Ich würde es begrüßen.<br><br>Ich verspreche es wird weder Spam noch Anfragen für weitere Spenden geben, obwohl diese immer willkommen wären.',
 
 	'NEW_VERSION'				=> 'Neue Version - %s',
 	'NEW_VERSION_EXPLAIN'		=> 'Version %1$s dieser Erweiterung steht jetzt zum Download zur Verfügung.<br>%2$s',
 	'NEW_VERSION_LINK'			=> 'Hier herunterladen',
+	'NO_JS' 					=> 'Du scheist Javascript deaktiviert zu haben.<br>Bitte <a href="https://enablejavascript.co/">aktiviere</a> es in Deinem Browser, um alle Funktionen dieser Seite nutzen zu können.',
 	'NO_VERSION_EXPLAIN'		=> 'Informationen zur Versionsaktualisierung sind nicht verfügbar.',
 
-	'PAYPAL_BUTTON'				=> 'Spenden Sie mit dem PayPal-Button',
+	'PAYPAL_BUTTON'				=> 'Spende mit dem PayPal-Button',
 	'PAYPAL_TITLE'				=> 'PayPal - Die sicherere und einfachere Möglichkeit, online zu bezahlen!',
+	'PHP_NOT_VALID' 			=> 'Deine PHP Version ist nicht mit dieser Erweiterung kompatibel.',
+	'PHPBB_NOT_VALID' 			=> 'Deine phpBB Version ist nicht mit dieser Erweiterung kompatibel.',
+
+	'SAVE'						=> 'Speichern',
+	'SAVE_CHANGES'				=> 'Änderungen speichern',
 
 	'VERSION'					=> 'Version',
 ));

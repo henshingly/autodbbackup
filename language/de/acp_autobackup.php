@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package Auto db Backup (3.2)
+* @package Auto db Backup
 * @copyright (c) 2015 david63
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
@@ -17,7 +17,7 @@ if (!defined('IN_PHPBB'))
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+	$lang = [];
 }
 
 // DEVELOPERS PLEASE NOTE
@@ -56,9 +56,9 @@ $lang = array_merge($lang, array(
 	'AUTO_DB_BACKUP_TIME_ERROR'				=> 'Der <strong>nächste Sicherungszeitpunkt</strong> ist falsch. Der Zeitpunkt muss in der Zukunft liegen.',
 	'AUTO_DB_BACKUP_TIME_EXPLAIN'			=> 'Der Zeitpunkt, zu dem die nächste Datenbanksicherung durchgeführt werden soll.<br><strong>Hinweis:</strong> Das angegebene Datum und die angegebene Uhrzeit müssen in der Zukunft liegen.',
 
-	'CLICK_SELECT'							=> 'Klicken Sie in das Textfeld, um Datum / Uhrzeit auszuwählen',
+	'CLICK_SELECT'							=> 'Klicken Sie in das Textfeld, um Datum/Uhrzeit auszuwählen',
 
-	'DATE_FORMAT_ERROR'						=> 'Das nächste Datums- / Uhrzeitformat der Sicherung ist ungültig.',
+	'DATE_FORMAT_ERROR'						=> 'Das nächste Datums-/Uhrzeitformat der Sicherung ist ungültig.',
 
 	'INVALID_PHP_TIMEZONE'					=> 'Die Standard-Timzone in Ihrer php.ini-Datei ist ungültig.',
 	'INVALID_USER_TIMEZONE'					=> 'Es liegt ein Problem mit Ihrer Zeitzoneneinstellung im UCP vor.',
@@ -80,7 +80,7 @@ $lang = array_merge($lang, array(
 	),
 ));
 
-// Date/time picker
+// Datums-/Zeitauswahl
 $lang = array_merge($lang, array(
 	'HOUR_TEXT'				=> 'Stunde',
 	'MINUTE_TEXT'			=> 'Minute',
@@ -88,8 +88,7 @@ $lang = array_merge($lang, array(
 	'PREV_TEXT'				=> '« Vorheriger',
 	'TIME_TEXT'				=> 'Zeit',
 
-	// Translators note: retain the format of [" "] as they are creating JSON compatible arrays
+	// Hinweis für Übersetzer: Behalten Sie das Format [""] bei, wenn Sie JSON-kompatible Arrays erstellen
 	'DAY_NAMES_MIN'			=> '["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"]',
 	'MONTH_NAMES' 			=> '["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]',
 ));
-

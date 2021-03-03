@@ -37,10 +37,10 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'ACP_AUTO_DB_BACKUP'			=> 'Automatische Datenbanksicherung',
+	'ACP_AUTO_DB_BACKUP'			=> 'Auto Backup Datenbank',
 	'ACP_AUTO_DB_BACKUP_SETTINGS'	=> 'Einstellungen für die automatische Sicherung',
 
-	'LOG_AUTO_DB_BACKUP'			=> '<strong>Automatische Datenbanksicherung abgeschlossen</strong>',
+	'LOG_AUTO_DB_BACKUP'			=> '<strong>Automatische Datenbanksicherung abgeschlossen<br>»»</strong>%1$s (%2$s)',
 	'LOG_AUTO_DB_BACKUP_SETTINGS'	=> '<strong>Geänderte Einstellungen für die automatische Datenbanksicherung</strong>',
 	'LOG_AUTO_DB_BACKUP_TIMEZONE'	=> 'Die automatische Datenbanksicherung ist aufgrund einer ungültigen Zeitzoneneinstellung fehlgeschlagen',
 ));
