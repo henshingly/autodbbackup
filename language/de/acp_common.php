@@ -40,7 +40,7 @@ $lang = array_merge($lang, [
 	'CLICK_DONATE' 				=> 'Klicke hier um zu spenden',
 
 	'DONATE'					=> 'Spenden',
-	'DONATE_EXTENSIONS'			=> 'Spende an meine Erweiterungen',
+	'DONATE_EXTENSIONS'			=> 'Spende für meine Erweiterungen',
 	'DONATE_EXTENSIONS_EXPLAIN'	=> 'Diese Erweiterung ist wie alle meine Erweiterungen völlig kostenlos. Wenn Du davon profitiert hast, kannst Du eine Spende tätigen, indem Du auf die gegenüberliegende PayPal-Spendenschaltfläche klickst. Ich würde mich freuen. Ich verspreche, dass es weder Spam noch Anfragen für weitere Spenden geben wird, obwohl diese immer willkommen wären.',
 
 	'NEW_VERSION'				=> 'Neue Version - %s',

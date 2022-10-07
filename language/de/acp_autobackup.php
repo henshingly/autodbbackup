@@ -39,31 +39,31 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'AUTO_DB_BACKUP_COPIES'					=> 'Gespeicherte Backups',
 	'AUTO_DB_BACKUP_COPIES_EXPLAIN'			=> 'Die Anzahl der Sicherungen, die auf dem Server gespeichert werden.<br>0 bedeutet deaktiviert und alle Backups werden auf dem Server gespeichert.',
-	'AUTO_DB_BACKUP_ENABLE'					=> 'Aktivieren Sie die automatische Datenbanksicherung',
-	'AUTO_DB_BACKUP_ENABLE_EXPLAIN'			=> 'Aktivieren oder deaktivieren Sie automatische Datenbanksicherungen',
+	'AUTO_DB_BACKUP_ENABLE'					=> 'Aktiviere die automatische Datenbanksicherung',
+	'AUTO_DB_BACKUP_ENABLE_EXPLAIN'			=> 'Aktivieren oder deaktiviere die automatische Datenbanksicherungen',
 	'AUTO_DB_BACKUP_FILETYPE'				=> 'Dateityp',
-	'AUTO_DB_BACKUP_FILETYPE_EXPLAIN'		=> 'Wählen Sie den Dateityp für die Sicherungen.',
+	'AUTO_DB_BACKUP_FILETYPE_EXPLAIN'		=> 'Wähle den Dateityp für die Sicherungen.',
 	'AUTO_DB_BACKUP_FREQ'					=> 'Backup Frequenz',
-	'AUTO_DB_BACKUP_FREQ_EXPLAIN'			=> 'Legen Sie die Backup Frequenz in Stunden fest.',
+	'AUTO_DB_BACKUP_FREQ_EXPLAIN'			=> 'Lege die Backup Frequenz in Stunden fest.',
 	'AUTO_DB_BACKUP_MAINTAIN_FREQ'			=> 'Backup-Häufigkeit beibehalten',
-	'AUTO_DB_BACKUP_MAINTAIN_FREQ_EXPLAIN'	=> 'Wenn Sie dies auf <strong>“Ja”</strong> setzen, wird die Sicherungshäufigkeitszeit beibehalten.<br>Beispiel: Wenn die Uhrzeit auf 23:15 Uhr und die Häufigkeit auf 24 Stunden eingestellt ist, erfolgt die nächste Sicherung am nächsten Tag um 23:15 Uhr. Wenn dies auf <strong>“Nein”</strong> eingestellt ist, erfolgt die nächste Sicherung 24 Stunden nach Ausführung der Sicherung.',
-	'AUTO_DB_BACKUP_OPTIMIZE'				=> 'Optimieren Sie die Datenbank, bevor Sie die Sicherung durchführen',
-	'AUTO_DB_BACKUP_OPTIMIZE_EXPLAIN'		=> 'Optimieren Sie nur nicht optimierte Datenbanktabellen, bevor Sie die Sicherung durchführen.',
+	'AUTO_DB_BACKUP_MAINTAIN_FREQ_EXPLAIN'	=> 'Wenn Du dies auf <strong>“Ja”</strong> setzen, wird die Sicherungshäufigkeitszeit beibehalten.<br>Beispiel: Wenn die Uhrzeit auf 23:15 Uhr und die Häufigkeit auf 24 Stunden eingestellt ist, erfolgt die nächste Sicherung am nächsten Tag um 23:15 Uhr. Wenn dies auf <strong>“Nein”</strong> eingestellt ist, erfolgt die nächste Sicherung 24 Stunden nach Ausführung der Sicherung.',
+	'AUTO_DB_BACKUP_OPTIMIZE'				=> 'Optimiere die Datenbank, bevor Du die Sicherung durchführst',
+	'AUTO_DB_BACKUP_OPTIMIZE_EXPLAIN'		=> 'Optimiere nur nicht optimierte Datenbanktabellen, bevor Du die Sicherung durchführst.',
 	'AUTO_DB_BACKUP_SETTINGS'				=> 'Einstellungen für die automatische Datenbanksicherung',
 	'AUTO_DB_BACKUP_SETTINGS_CHANGED'		=> 'Einstellungen für die automatische Datenbanksicherung geändert.',
-	'AUTO_DB_BACKUP_SETTINGS_EXPLAIN'		=> 'Hier können Sie Standardeinstellungen für automatische Datenbanksicherungen vornehmen. Abhängig von Ihrer Serverkonfiguration können Sie möglicherweise die Datenbank komprimieren.<br>Alle Backups werden im Ordner <samp>/store/</samp> gespeichert. Sie können über den Bereich <em><strong>Datenbank</strong> -> <strong>Wiederherstellen</strong></em> eine Wiederherstellung starten.',
+	'AUTO_DB_BACKUP_SETTINGS_EXPLAIN'		=> 'Hier kannst Du die Standardeinstellungen für automatische Datenbanksicherungen vornehmen. Abhängig von Deiner Serverkonfiguration können Sie möglicherweise die Datenbank komprimieren.<br>Alle Backups werden im Ordner <samp>/store/</samp> gespeichert. Du kannst über den Bereich <em><strong>Datenbank</strong> -> <strong>Wiederherstellen</strong></em> eine Wiederherstellung starten.',
 	'AUTO_DB_BACKUP_TIME'					=> 'Nächste Sicherungszeit',
 	'AUTO_DB_BACKUP_TIME_ERROR'				=> 'Der <strong>nächste Sicherungszeitpunkt</strong> ist falsch. Der Zeitpunkt muss in der Zukunft liegen.',
 	'AUTO_DB_BACKUP_TIME_EXPLAIN'			=> 'Der Zeitpunkt, zu dem die nächste Datenbanksicherung durchgeführt werden soll.<br><strong>Hinweis:</strong> Das angegebene Datum und die angegebene Uhrzeit müssen in der Zukunft liegen.',
 
-	'CLICK_SELECT'							=> 'Klicken Sie in das Textfeld, um Datum / Uhrzeit auszuwählen',
+	'CLICK_SELECT'							=> 'Klicke in das Textfeld, um Datum / Uhrzeit auszuwählen',
 
 	'DATE_FORMAT_ERROR'						=> 'Das nächste Datums- / Uhrzeitformat der Sicherung ist ungültig.',
 
-	'INVALID_PHP_TIMEZONE'					=> 'Die Standard-Timzone in Ihrer php.ini-Datei ist ungültig.',
-	'INVALID_USER_TIMEZONE'					=> 'Es liegt ein Problem mit Ihrer Zeitzoneneinstellung im UCP vor.',
+	'INVALID_PHP_TIMEZONE'					=> 'Die Standard-Timzone in Deiner php.ini-Datei ist ungültig.',
+	'INVALID_USER_TIMEZONE'					=> 'Es liegt ein Problem mit Deiner Zeitzoneneinstellung im UCP vor.',
 
-	'NO_TIMEZONE_SET'						=> 'Sie haben keine Zeitzone in Ihrem UCP festgelegt - bitte stellen Sie diese ein, bevor Sie fortfahren können.',
+	'NO_TIMEZONE_SET'						=> 'Du hast kein Zeitzone in Deinem UCP festgelegt - bitte stelle diese ein, bevor Du fortfahren kannst.',
 
 	'FILETYPE'	=> array(
 		'gzip'	=> 'gzip',
