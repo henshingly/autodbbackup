@@ -2,6 +2,8 @@
 
 This is the repository for the development of the phpBB Auto Database Backup Extension.
 
+[![Build Status](https://github.com/rmcgirr83/autodbbackup/workflows/Tests/badge.svg)](https://github.com/rmcgirr83/autodbbackup/actions)
+
 ## Quick Install
 
 1. [Download the latest release](https://github.com/RMcGirr83/autodbbackup).
