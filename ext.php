@@ -7,7 +7,7 @@
 *
 */
 
-namespace rmcgirr83\autodbbackup;
+namespace pico\autodbbackup;
 
 /**
 * Extension class for custom enable/disable/purge actions
@@ -26,7 +26,7 @@ class ext extends \phpbb\extension\base
 		if (!$enableable)
 		{
 			$user = $this->container->get('user');
-			$user->add_lang_ext('rmcgirr83/autodbbackup', 'auto_db_backup_acp');
+			$user->add_lang_ext('pico/autodbbackup', 'auto_db_backup_acp');
 			trigger_error($user->lang('AUTODBBACKUP_REQUIRE'), E_USER_WARNING);
 		}
 
