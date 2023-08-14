@@ -18,29 +18,32 @@ use phpbb\db\driver\driver_interface as db;
 use phpbb\db\tools\tools_interface as db_tools;
 use phpbb\log\log;
 use phpbb\user;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class auto_db_backup extends \phpbb\cron\task\base
 {
-	protected $phpbb_root_path;
-	protected $php_ext;
 	protected $config;
 	protected $db;
 	protected $db_tools;
 	protected $log;
 	protected $user;
-
+	protected $root_path;
+	protected $php_ext;
+	/** @var ContainerInterface */
+	protected $phpbb_container;
 	/**
 	* Constructor.
 	*/
-	public function __construct($phpbb_root_path, $php_ext, config $config, db $db, db_tools $db_tools, log $log, user $user)
+	public function __construct(config $config, db $db, db_tools $db_tools, log $log, user $user, $root_path, $php_ext, ContainerInterface $phpbb_container)
 	{
-		$this->phpbb_root_path = $phpbb_root_path;
-		$this->php_ext = $php_ext;
 		$this->config = $config;
 		$this->db = $db;
 		$this->db_tools = $db_tools;
 		$this->log = $log;
 		$this->user = $user;
+		$this->root_path = $root_path;
+		$this->php_ext = $php_ext;
+		$this->phpbb_container = $phpbb_container;
 	}
 
 	/**
@@ -50,7 +53,7 @@ class auto_db_backup extends \phpbb\cron\task\base
 	*/
 	public function run()
 	{
-		include($this->phpbb_root_path . 'includes/acp/acp_database.' . $this->php_ext);
+		include($this->root_path . 'includes/acp/acp_database.' . $this->php_ext);
 
 		$backup_date = getdate($this->config['auto_db_backup_last_gc']);
 		$last_backup_date = mktime($backup_date['hours'], $backup_date['minutes'], 0, date("m"), date("j"), date("Y"));
@@ -88,35 +91,9 @@ class auto_db_backup extends \phpbb\cron\task\base
 		$format = $this->config['auto_db_backup_filetype'];
 		$filename = 'backup_' . $time . '_' . unique_id();
 
-		switch ($this->db->get_sql_layer())
-		{
-			case 'mysqli':
-			case 'mysql4':
-			case 'mysql':
-				$extractor = new \mysql_extractor($format, $filename, $time, false, true);
-			break;
-
-			case 'sqlite':
-				$extractor = new \sqlite_extractor($format, $filename, $time, false, true);
-			break;
-
-			case 'sqlite3':
-				$extractor = new \sqlite3_extractor($format, $filename, $time, false, true);
-			break;
-
-			case 'postgres':
-				$extractor = new \postgres_extractor($format, $filename, $time, false, true);
-			break;
-
-			case 'oracle':
-				$extractor = new \oracle_extractor($format, $filename, $time, false, true);
-			break;
-
-			case 'mssql':
-			case 'mssql_odbc':
-				$extractor = new \mssql_extractor($format, $filename, $time, false, true);
-			break;
-		}
+		/** @var phpbb\db\extractor\extractor_interface $extractor Database extractor */
+		$extractor = $this->phpbb_container->get('dbal.extractor');
+		$extractor->init_extractor($format, $filename, $time, false, true);
 
 		global $table_prefix;
 
@@ -137,7 +114,7 @@ class auto_db_backup extends \phpbb\cron\task\base
 		// Delete backup
 		if ($this->config['auto_db_backup_copies'])
 		{
-			$rep = $this->phpbb_root_path . '/store/';
+			$rep = $this->root_path . '/store/';
 			$dir = opendir($rep);
 			$files = array();
 			while (($file = readdir($dir)) !== false)
