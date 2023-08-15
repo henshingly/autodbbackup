@@ -1,98 +1,103 @@
-<!-- INCLUDE overall_header.html -->
+{% INCLUDE 'overall_header.html' %}
 
-<h1>{L_AUTO_DB_BACKUP_SETTINGS}</h1>
+<h1>{{ lang('AUTO_DB_BACKUP_SETTINGS') }}</h1>
 
-<p>{L_AUTO_DB_BACKUP_SETTINGS_EXPLAIN}</p>
+<p>{{ lang('AUTO_DB_BACKUP_SETTINGS_EXPLAIN') }}</p>
 
-<!-- IF S_ERROR -->
+{% if S_ERROR %}
 	<div class="errorbox">
-		<h3>{L_WARNING}</h3>
-		<p>{ERROR_MSG}</p>
+		<h3>{{ lang('WARNING') }}</h3>
+		<p>{{ ERROR_MSG }}</p>
 	</div>
-<!-- ENDIF -->
+{% endif %}
 
-<form id="acp_auto_db_backup" method="post" action="{U_ACTION}">
+<form id="acp_auto_db_backup" method="post" action="{{ U_ACTION }}">
 
-<fieldset>
-	<legend>{L_SETTINGS}</legend>
-<dl>
-	<dt><label for="auto_db_backup_enable">{L_AUTO_DB_BACKUP_ENABLE}{L_COLON}</label><br /><span>{L_AUTO_DB_BACKUP_ENABLE_EXPLAIN}</span></dt>
-	<dd><label><input type="radio" class="radio" id="auto_db_backup_enable" name="auto_db_backup_enable" value="1"<!-- IF S_AUTO_DB_BACKUP_ENABLE --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
-		<label><input type="radio" class="radio" name="auto_db_backup_enable" value="0"<!-- IF not S_AUTO_DB_BACKUP_ENABLE --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
-</dl>
-<dl>
-	<dt><label for="auto_db_backup_filetype">{L_AUTO_DB_BACKUP_FILETYPE}{L_COLON}</label><br /><span>{L_AUTO_DB_BACKUP_FILETYPE_EXPLAIN}</span></dt>
-	<dd>
-		<!-- BEGIN filetypes -->
-			<label><input type="radio" class="radio" id="auto_db_backup_filetype" name="auto_db_backup_filetype" value="{filetypes.FILETYPE}"<!-- IF filetypes.S_CHECKED --> checked="checked"<!-- ENDIF --> />{filetypes.FILETYPE}</label>
-		<!-- END filetypes -->
-	</dd>
-</dl>
-<dl>
-	<dt><label for="auto_db_backup_gc">{L_AUTO_DB_BACKUP_FREQ}{L_COLON}</label><br /><span>{L_AUTO_DB_BACKUP_FREQ_EXPLAIN}</span></dt>
-	<dd><input id="auto_db_backup_gc" type="number" maxlength="2" name="auto_db_backup_gc" value="{AUTO_DB_BACKUP_GC}"  /> <span>{L_DAYS}</span></dd>
-</dl>
-<dl>
-	<dt><label for="auto_db_backup_copies">{L_AUTO_DB_BACKUP_COPIES}{L_COLON}</label><br /><span>{L_AUTO_DB_BACKUP_COPIES_EXPLAIN}</span></dt>
-	<dd><input  id="auto_db_backup_copies" type="number" maxlength="2" name="auto_db_backup_copies" value="{AUTO_DB_BACKUP_COPIES}"/></dd>
-</dl>
-<dl>
-	<dt><label for="auto_db_backup_optimize">{L_AUTO_DB_BACKUP_OPTIMIZE}{L_COLON}</label><br /><span>{L_AUTO_DB_BACKUP_OPTIMIZE_EXPLAIN}</span></dt>
-	<dd><label><input type="radio" class="radio" id="auto_db_backup_optimize" name="auto_db_backup_optimize" value="1"<!-- IF S_AUTO_DB_BACKUP_OPTIMIZE --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
-		<label><input type="radio" class="radio" name="auto_db_backup_optimize" value="0"<!-- IF not S_AUTO_DB_BACKUP_OPTIMIZE --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
-</dl>
-<dl>
-	<dt><label for="auto_db_backup_day">{L_AUTO_DB_BACKUP_TIME}{L_COLON}</label><br /><span>{L_AUTO_DB_BACKUP_TIME_EXPLAIN}</span></dt>
-	<dd>
-		<label for="auto_db_backup_day">{L_DAY}{L_COLON}
-			<select name="auto_db_backup_day" id="auto_db_backup_day">
-			<!-- BEGIN days -->
-				<option value="{days.DAY}"<!-- IF days.S_SELECTED --> selected="selected"<!-- ENDIF -->>{days.DAY}</option>
-			<!-- END days -->
-			</select>
-		</label>
-		<label for="auto_db_backup_month">{L_MONTH}{L_COLON}
-			<select name="auto_db_backup_month" id="auto_db_backup_month">
-			<!-- BEGIN months -->
-				<option value="{months.MONTH}"<!-- IF months.S_SELECTED --> selected="selected"<!-- ENDIF -->>{months.MONTH}</option>
-			<!-- END months -->
-			</select>
-		</label>
-		<label for="auto_db_backup_year">{L_YEAR}{L_COLON}
-			<select name="auto_db_backup_year" id="auto_db_backup_year">
-			<!-- BEGIN years -->
-				<option value="{years.YEAR}"<!-- IF years.S_SELECTED --> selected="selected"<!-- ENDIF -->>{years.YEAR}</option>
-			<!-- END years -->
-			</select>
-		</label>
-		<label for="auto_db_backup_hour">{L_HOUR}{L_COLON}
-			<select name="auto_db_backup_hour" id="auto_db_backup_hour">
-			<!-- BEGIN hours -->
-				<option value="{hours.HOUR}"<!-- IF hours.S_SELECTED --> selected="selected"<!-- ENDIF -->>{hours.HOUR}</option>
-			<!-- END hours -->
-			</select>
-		</label>
-		<label for="auto_db_backup_minute">{L_MINUTE}{L_COLON}
-			<select name="auto_db_backup_minute" id="auto_db_backup_minute">
-			<!-- BEGIN minutes -->
-				<option value="{minutes.MINUTE}"<!-- IF minutes.S_SELECTED --> selected="selected"<!-- ENDIF -->>{minutes.MINUTE}</option>
-			<!-- END minutes -->
-			</select>
-		</label>
-	</dd>
-</dl>
-</fieldset>
+	<fieldset>
+		<legend>{{ lang('SETTINGS') }}</legend>
+		<dl>
+			<dt><label for="auto_db_backup_enable">{{ lang('AUTO_DB_BACKUP_ENABLE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_ENABLE_EXPLAIN') }}</span></dt>
+			<dd><label><input type="radio" class="radio" id="auto_db_backup_enable" name="auto_db_backup_enable" value="1" {% if S_AUTO_DB_BACKUP_ENABLE %}checked="checked"{% endif %} /> {{ lang('ENABLED') }}</label>
+				<label><input type="radio" class="radio" name="auto_db_backup_enable" value="0" {% if !S_AUTO_DB_BACKUP_ENABLE %}checked="checked"{% endif %} /> {{ lang('DISABLED') }}</label></dd>
+		</dl>
+		<dl>
+			<dt><label for="auto_db_backup_filetype">{{ lang('AUTO_DB_BACKUP_FILETYPE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_FILETYPE_EXPLAIN') }}</span></dt>
+			<dd>
+				{% for filetypes in loops.filetypes %}
+					<label><input type="radio" class="radio" id="auto_db_backup_filetype" name="auto_db_backup_filetype" value="{{ filetypes.FILETYPE }}" {% if filetypes.S_CHECKED %} checked="checked"{% endif %} />{{ filetypes.FILETYPE }}</label>
+				{% endfor %}
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="auto_db_backup_optimize">{{ lang('AUTO_DB_BACKUP_OPTIMIZE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_OPTIMIZE_EXPLAIN') }}</span></dt>
+			<dd><label><input type="radio" class="radio" id="auto_db_backup_optimize" name="auto_db_backup_optimize" value="1" {% if S_AUTO_DB_BACKUP_OPTIMIZE %}checked="checked"{% endif %} /> {{ lang('ENABLED') }}</label>
+				<label><input type="radio" class="radio" name="auto_db_backup_optimize" value="0" {% if not S_AUTO_DB_BACKUP_OPTIMIZE %}checked="checked"{% endif %} /> {{ lang('DISABLED') }}</label></dd>
+		</dl>		
+		<dl>
+			<dt><label for="auto_db_backup_gc">{{ lang('AUTO_DB_BACKUP_FREQ') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_FREQ_EXPLAIN') }}</span></dt>
+			<dd><input id="auto_db_backup_gc" type="number" maxlength="2" name="auto_db_backup_gc" value="{{ AUTO_DB_BACKUP_GC }}"  /> <span>{{ lang('DAYS') }}</span></dd>
+		</dl>
+		<dl>
+			<dt><label for="auto_db_backup_copies">{{ lang('AUTO_DB_BACKUP_COPIES') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_COPIES_EXPLAIN') }}</span></dt>
+			<dd><input  id="auto_db_backup_copies" type="number" maxlength="2" name="auto_db_backup_copies" value="{{ AUTO_DB_BACKUP_COPIES }}"/></dd>
+		</dl>
+		<dl>
+			<dt><label for="auto_db_backup_day">{{ lang('AUTO_DB_BACKUP_TIME') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_TIME_EXPLAIN') }}</span></dt>
+			<dd>
+				<label for="auto_db_backup_day">{{ lang('DAY') }}{{ lang('COLON') }}
+					<select name="auto_db_backup_day" id="auto_db_backup_day">
+					{% for days in loops.days %}
+						<option value="{{ days.DAY }}" {% if days.S_SELECTED %}selected="selected"{% endif %}>{{ days.DAY }}</option>
+					{% endfor %}
+					</select>
+				</label>
+				<label for="auto_db_backup_month">{{ lang('MONTH') }}{{ lang('COLON') }}
+					<select name="auto_db_backup_month" id="auto_db_backup_month">
+					{% for months in loops.months %}
+						<option value="{{ months.MONTH }}" {% if months.S_SELECTED %}selected="selected"{% endif %}>{{ months.MONTH }}</option>
+					{% endfor %}
+					</select>
+				</label>
+				<label for="auto_db_backup_year">{{ lang('YEAR') }}{{ lang('COLON') }}
+					<select name="auto_db_backup_year" id="auto_db_backup_year">
+					{% for years in loops.years %}
+						<option value="{{ years.YEAR }}" {% if years.S_SELECTED %}selected="selected"{% endif %}>{{ years.YEAR }}</option>
+					{% endfor %}
+					</select>
+				</label>
+				<label for="auto_db_backup_hour">{{ lang('HOUR') }}{{ lang('COLON') }}
+					<select name="auto_db_backup_hour" id="auto_db_backup_hour">
+					{% for hours in loops.hours %}
+						<option value="{{ hours.HOUR }}" {% if hours.S_SELECTED %}selected="selected"{% endif %}>{{ hours.HOUR }}</option>
+					{% endfor %}
+					</select>
+				</label>
+				<label for="auto_db_backup_minute">{{ lang('MINUTE') }}{{ lang('COLON') }}
+					<select name="auto_db_backup_minute" id="auto_db_backup_minute">
+					{% for minutes in loops.minutes %}
+						<option value="{{ minutes.MINUTE }}" {% if minutes.S_SELECTED %}selected="selected"{% endif %}>{{ minutes.MINUTE }}</option>
+					{% endfor %}
+					</select>
+				</label>
+			</dd>
+		</dl>
+	</fieldset>
 
-<fieldset>
-	<legend>{L_ACP_SUBMIT_CHANGES}</legend>
+	<fieldset>
+		<legend>{{ lang('ACP_SUBMIT_CHANGES') }}</legend>
 
-	<p class="submit-buttons">
-		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
-		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
-		{S_FORM_TOKEN}
-	</p>
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}" />&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}" />
+			{{ S_FORM_TOKEN }}
+		</p>
 
-</fieldset>
+	</fieldset>
 </form>
-
-<!-- INCLUDE overall_footer.html -->
+<fieldset>
+	<dl>
+		<dt><label>{{ lang('BUY_ME_A_BEER_SHORT') }}{{ lang('COLON') }}</label><br /><span>{{ lang('BUY_ME_A_BEER_EXPLAIN') }}</span></dt>
+		<dd><a href="{{ lang('BUY_ME_A_BEER_URL') }}" target="_blank" rel="noreferrer noopener"><img src="{{ lang('PAYPAL_IMAGE_URL') }}" alt="{{ lang('PAYPAL_ALT') }}" style="cursor: pointer; margin-top: 15px;"></a></dd>
+	</dl>
+</fieldset>
+{% INCLUDE 'overall_footer.html' %}

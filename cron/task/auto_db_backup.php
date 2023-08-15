@@ -3,6 +3,7 @@
 *
 * Auto Database Backup
 *
+* @copyright (c) 2023 Rich McGirr
 * @copyright (c) 2014 Lukasz Kaczynski
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
@@ -53,6 +54,7 @@ class auto_db_backup extends \phpbb\cron\task\base
 	*/
 	public function run()
 	{
+		// this is required for the get_usable_memory function
 		include($this->root_path . 'includes/acp/acp_database.' . $this->php_ext);
 
 		$backup_date = getdate($this->config['auto_db_backup_last_gc']);
@@ -109,8 +111,6 @@ class auto_db_backup extends \phpbb\cron\task\base
 
 		$extractor->write_end();
 
-		$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_AUTO_DB_BACKUP');
-
 		// Delete backup
 		if ($this->config['auto_db_backup_copies'])
 		{
@@ -142,6 +142,8 @@ class auto_db_backup extends \phpbb\cron\task\base
 				}
 			}
 		}
+
+		$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_AUTO_DB_BACKUP');
 	}
 
 	/**
