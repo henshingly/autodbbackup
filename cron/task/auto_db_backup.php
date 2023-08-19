@@ -28,23 +28,24 @@ class auto_db_backup extends \phpbb\cron\task\base
 	protected $db_tools;
 	protected $log;
 	protected $user;
-	protected $root_path;
-	protected $php_ext;
 	/** @var ContainerInterface */
 	protected $phpbb_container;
+	protected $root_path;
+	protected $php_ext;
+
 	/**
 	* Constructor.
 	*/
-	public function __construct(config $config, db $db, db_tools $db_tools, log $log, user $user, $root_path, $php_ext, ContainerInterface $phpbb_container)
+	public function __construct(config $config, db $db, db_tools $db_tools, log $log, user $user, ContainerInterface $phpbb_container, $root_path, $php_ext)
 	{
 		$this->config = $config;
 		$this->db = $db;
 		$this->db_tools = $db_tools;
 		$this->log = $log;
 		$this->user = $user;
+		$this->phpbb_container = $phpbb_container;
 		$this->root_path = $root_path;
 		$this->php_ext = $php_ext;
-		$this->phpbb_container = $phpbb_container;
 	}
 
 	/**
