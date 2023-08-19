@@ -132,7 +132,7 @@ class auto_db_backup extends \phpbb\cron\task\base
 			if (sizeof($files) > $this->config['auto_db_backup_copies'])
 			{
 				$i = 0;
-				foreach ($files as $key => $value )
+				foreach ($files as $key => $value)
 				{
 					$i++;
 					if ($i > $this->config['auto_db_backup_copies'])
