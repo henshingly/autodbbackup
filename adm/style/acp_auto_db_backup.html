@@ -30,16 +30,16 @@
 		</dl>
 		<dl>
 			<dt><label for="auto_db_backup_optimize">{{ lang('AUTO_DB_BACKUP_OPTIMIZE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_OPTIMIZE_EXPLAIN') }}</span></dt>
-			<dd><label><input type="radio" class="radio" id="auto_db_backup_optimize" name="auto_db_backup_optimize" value="1" {% if S_AUTO_DB_BACKUP_OPTIMIZE %}checked="checked"{% endif %} /> {{ lang('ENABLED') }}</label>
-				<label><input type="radio" class="radio" name="auto_db_backup_optimize" value="0" {% if not S_AUTO_DB_BACKUP_OPTIMIZE %}checked="checked"{% endif %} /> {{ lang('DISABLED') }}</label></dd>
-		</dl>		
+			<dd>{% if S_OPTIMIZE_ALLOWED %}<label><input type="radio" class="radio" id="auto_db_backup_optimize" name="auto_db_backup_optimize" value="1" {% if S_AUTO_DB_BACKUP_OPTIMIZE %}checked="checked"{% endif %} /> {{ lang('ENABLED') }}</label>
+				<label><input type="radio" class="radio" name="auto_db_backup_optimize" value="0" {% if not S_AUTO_DB_BACKUP_OPTIMIZE %}checked="checked"{% endif %} /> {{ lang('DISABLED') }}</label>{% else %}{{ lang('AUTO_DB_BACKUP_OPTIMIZE_NO') }}</dd>{% endif %}
+		</dl>
 		<dl>
 			<dt><label for="auto_db_backup_gc">{{ lang('AUTO_DB_BACKUP_FREQ') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_FREQ_EXPLAIN') }}</span></dt>
-			<dd><input id="auto_db_backup_gc" type="number" maxlength="2" name="auto_db_backup_gc" value="{{ AUTO_DB_BACKUP_GC }}"  /> <span>{{ lang('DAYS') }}</span></dd>
+			<dd><input id="auto_db_backup_gc" type="number" max="99" min="1" name="auto_db_backup_gc" value="{{ AUTO_DB_BACKUP_GC }}"  /> <span>{{ lang('DAYS') }}</span></dd>
 		</dl>
 		<dl>
 			<dt><label for="auto_db_backup_copies">{{ lang('AUTO_DB_BACKUP_COPIES') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_COPIES_EXPLAIN') }}</span></dt>
-			<dd><input  id="auto_db_backup_copies" type="number" maxlength="2" name="auto_db_backup_copies" value="{{ AUTO_DB_BACKUP_COPIES }}"/></dd>
+			<dd><input  id="auto_db_backup_copies" type="number" max="99" min="0" name="auto_db_backup_copies" value="{{ AUTO_DB_BACKUP_COPIES }}"/></dd>
 		</dl>
 		<dl>
 			<dt><label for="auto_db_backup_day">{{ lang('AUTO_DB_BACKUP_TIME') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_TIME_EXPLAIN') }}</span></dt>

@@ -7,9 +7,9 @@ services:
             - '@dbal.tools'
             - '@log'
             - '@user'
+            - '@service_container'            
             - '%core.root_path%'
             - '%core.php_ext%'
-            - '@service_container'
         calls:
             - [set_name, [pico.autodbbackup.cron.task.auto_db_backup]]
         tags:

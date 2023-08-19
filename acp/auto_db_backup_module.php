@@ -3,6 +3,7 @@
 *
 * Auto Database Backup
 *
+* @copyright (c) 2023 Rich McGirr
 * @copyright (c) 2014 Lukasz Kaczynski
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
@@ -28,9 +29,10 @@ class auto_db_backup_module
 
 	function main($id, $mode)
 	{
-		global $config, $phpbb_log, $request, $template, $user;
+		global $config, $db, $phpbb_log, $request, $template, $user;
 
 		$this->config = $config;
+		$this->db = $db;
 		$this->request = $request;
 		$this->template = $template;
 		$this->user = $user;
@@ -165,12 +167,14 @@ class auto_db_backup_module
 			}
 		}
 
+		$optimize_allowed = $this->db->sql_query('SHOW TABLE STATUS');
 		$this->template->assign_vars(array(
 			'S_ERROR'		=> (sizeof($errors)) ? true : false,
 			'ERROR_MSG'		=> (sizeof($errors)) ? implode('<br />', $errors) : '',
 
 			'S_AUTO_DB_BACKUP_ENABLE'		=> $this->config['auto_db_backup_enable'],
 			'S_AUTO_DB_BACKUP_OPTIMIZE'		=> $this->config['auto_db_backup_optimize'],
+			'S_OPTIMIZE_ALLOWED'			=> $optimize_allowed,
 
 			'AUTO_DB_BACKUP_GC'			=> $this->config['auto_db_backup_gc'] / 86400,
 			'AUTO_DB_BACKUP_COPIES'		=> $this->config['auto_db_backup_copies'],

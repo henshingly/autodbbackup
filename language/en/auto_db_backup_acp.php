@@ -24,7 +24,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'AUTO_DB_BACKUP_SETTINGS'				=> 'Auto Database Backup settings',
-	'AUTO_DB_BACKUP_SETTINGS_EXPLAIN'		=> 'Here you can set up default settings for automatic database backups. Depending on your server configuration you may be able to compress the database.<br />All backups will be stored in <samp>/store/</samp> folder. You can restore backup via <em>Restore</em> panel.',
+	'AUTO_DB_BACKUP_SETTINGS_EXPLAIN'		=> 'Here you can set default settings for automatic database backups. Depending on your server configuration you may be able to compress the database.<br>All backups will be stored in the <samp>/store/</samp> folder. You can restore backups via the <em>Restore</em> panel.',
 	'AUTO_DB_BACKUP_SETTINGS_CHANGED'		=> 'Auto Database Backup Settings changed.',
 	'AUTO_DB_BACKUP_ENABLE'					=> 'Enable Auto Database Backup',
 	'AUTO_DB_BACKUP_ENABLE_EXPLAIN'			=> 'Enable or disable automatic database backups',
@@ -37,9 +37,10 @@ $lang = array_merge($lang, array(
 	'AUTO_DB_BACKUP_FILETYPE'				=> 'File type',
 	'AUTO_DB_BACKUP_FILETYPE_EXPLAIN'		=> 'Choose the file type for backups.',
 	'AUTO_DB_BACKUP_OPTIMIZE'				=> 'Optimize DB before backup',
-	'AUTO_DB_BACKUP_OPTIMIZE_EXPLAIN'		=> 'Optimize only unoptimized database tables before making its backup .',
+	'AUTO_DB_BACKUP_OPTIMIZE_EXPLAIN'		=> 'Optimize only unoptimized database tables before making the backup. This works only for MYSQL databases.',
+	'AUTO_DB_BACKUP_OPTIMIZE_NO'			=> 'The database in use on the forum is not <strong>MYSQL</strong>!',
 	'AUTO_DB_BACKUP_TIME'					=> 'Next backup time',
-	'AUTO_DB_BACKUP_TIME_EXPLAIN'			=> 'Specify when a following database backup should be made.<br /><strong>Note</strong>: you should specify a particular point in the future.',
+	'AUTO_DB_BACKUP_TIME_EXPLAIN'			=> 'Specify when a following database backup should be made.<br><strong>Note</strong>: you must specify a time in the future.',
 	'AUTO_DB_BACKUP_TIME_ERROR'				=> 'The <em>next backup time</em> is incorrect. The time has to be defined in the future.',
 
 	'HOUR'		=> 'Hour',

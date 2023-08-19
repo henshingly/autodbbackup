@@ -18,7 +18,7 @@ class auto_db_backup_info
 			'filename'	=> '\pico\autodbbackup\acp\auto_db_backup_module',
 			'title'		=> 'ACP_AUTO_DB_BACKUP',
 			'modes'		=> array(
-				'settings'	=> array('title' => 'ACP_AUTO_DB_BACKUP_SETTINGS', 'auth' => 'ext_pico/autodbbackup && acl_a_board', 'cat' => array('ACP_CAT_DATABASE')),
+				'settings'	=> array('title' => 'ACP_AUTO_DB_BACKUP', 'auth' => 'ext_pico/autodbbackup && acl_a_board', 'cat' => array('ACP_CAT_DATABASE')),
 			),
 		);
 	}
