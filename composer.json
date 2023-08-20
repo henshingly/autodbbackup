@@ -25,8 +25,8 @@
     ],
     "require": {
         "php": ">=7.4",
-		"phpbb/phpbb": ">=3.3",
-        "composer/installers": "~1.0"
+        "phpbb/phpbb": ">=3.3",
+        "composer/installers": "~1.0.0"
     },
     "require-dev": {
         "phpbb/epv": "dev-master"
@@ -39,7 +39,8 @@
         "version-check": {
             "host": "www.phpbb.com",
             "directory": "/customise/db/extension/auto_database_backup_2",
-            "filename": "version_check"
+            "filename": "version_check",
+            "ssl": true
         }
     }
 }
