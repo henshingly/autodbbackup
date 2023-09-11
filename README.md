@@ -26,7 +26,7 @@ An extension for phpBB that will automatically backup your database using the ph
  1. Navigate in the ACP to `Customise -> Manage extensions`.
  2. Click the `Disable` link for `Auto database backup`.
  3. Delete the files from the `phpBB/ext/david63/autodbbackup/` folder.
- 4. [Download the latest release](https://github.com/henshingly/autodbbackup/archive/3.3.zip) and unzip it.
+ 4. [Download the latest release](https://github.com/henshingly/autodbbackup/archive/3.3.1.zip) and unzip it.
  5. Upload the unzipped files to the `phpBB/ext/david63/autodbbackup/` folder of your phpBB board.
  6. Navigate in the ACP to `Customise -> Manage extensions`.
  7. Look for `Auto database backup` under the Disabled Extensions list and click its `Enable` link.
