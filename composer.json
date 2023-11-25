@@ -1,5 +1,5 @@
 {
-	"name": "david63/autodbbackup",
+	"name": "henshingly/autodbbackup",
 	"type": "phpbb-extension",
 	"description": "An extension for phpBB that will automatically backup your database using the phpBB Cron.",
 	"version": "3.3",
