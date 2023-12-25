@@ -115,7 +115,7 @@ class auto_db_backup extends \phpbb\cron\task\base
 		// Delete backup
 		if ($this->config['auto_db_backup_copies'])
 		{
-			$rep = $this->root_path . '/store/';
+			$rep = $this->root_path . 'store/';
 			$dir = opendir($rep);
 			$files = array();
 			while (($file = readdir($dir)) !== false)
@@ -138,7 +138,7 @@ class auto_db_backup extends \phpbb\cron\task\base
 					$i++;
 					if ($i > $this->config['auto_db_backup_copies'])
 					{
-						@unlink($rep . $key);
+						unlink($rep . $key);
 					}
 				}
 			}
