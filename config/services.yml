@@ -7,10 +7,21 @@ services:
             - '@dbal.tools'
             - '@log'
             - '@user'
-            - '@service_container'            
+            - '@service_container'
             - '%core.root_path%'
             - '%core.php_ext%'
         calls:
             - [set_name, [pico.autodbbackup.cron.task.auto_db_backup]]
         tags:
             - { name: cron.task }
+
+    pico.autodbbackup.admin.controller:
+        class: pico\autodbbackup\controller\admin_controller
+        arguments:
+            - '@config'
+            - '@dbal.conn'
+            - '@language'
+            - '@log'
+            - '@request'
+            - '@template'
+            - '@user'

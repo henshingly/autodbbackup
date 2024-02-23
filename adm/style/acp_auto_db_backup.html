@@ -24,7 +24,7 @@
 			<dt><label for="auto_db_backup_filetype">{{ lang('AUTO_DB_BACKUP_FILETYPE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('AUTO_DB_BACKUP_FILETYPE_EXPLAIN') }}</span></dt>
 			<dd>
 				{% for filetypes in loops.filetypes %}
-					<label><input type="radio" class="radio" id="auto_db_backup_filetype" name="auto_db_backup_filetype" value="{{ filetypes.FILETYPE }}" {% if filetypes.S_CHECKED %} checked="checked"{% endif %} />{{ filetypes.FILETYPE }}</label>
+					<label><input type="radio" class="radio" id="auto_db_backup_filetype" name="auto_db_backup_filetype" value="{{ filetypes.FILETYPE }}" {% if filetypes.S_CHECKED %} checked="checked"{% endif %} /> {{ filetypes.FILETYPE }}</label>
 				{% endfor %}
 			</dd>
 		</dl>
